@@ -9,6 +9,6 @@ d3
 underscore
 accounts-password
 accounts-base
-accounts-ui
 bootstrap-3
 iron-router
+accounts-ui-bootstrap-3
