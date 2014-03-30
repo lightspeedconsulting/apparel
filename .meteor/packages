@@ -4,6 +4,10 @@
 # but you can also edit it by hand.
 
 standard-app-packages
-autopublish
-insecure
-preserve-inputs
+d3
+underscore
+accounts-password
+accounts-base
+bootstrap-3
+iron-router
+accounts-ui-bootstrap-3
