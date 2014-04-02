@@ -1,10 +1,10 @@
 Template.addCustomerForm.events({
   'click #createNewCustomer': function(e) {
     e.preventDefault();
-console.log('clicked')
-    var email = $('emailInput').val();
-    var firstName = $('firstName').val();
-    var lastName = $('lastName').val();
+
+    var email = $('#emailInput').val();
+    var firstName = $('#firstName').val();
+    var lastName = $('#lastName').val();
 
     var attributes = {
       email: email,
