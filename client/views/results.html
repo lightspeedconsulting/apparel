@@ -3,11 +3,15 @@
     {{#each searchResults}}
       {{> searchResult}}
     {{/each}}
-    {{#unless searchResults}}
-      <button class="btn btn-default btn-large" id="addCustomer">Add Customer</button>
+    {{#unless addCustomerClicked}}
+      {{#unless searchResults}}
+        <button class="btn btn-default btn-large" id="addCustomer">Add Customer</button>
+      {{/unless}}
     {{/unless}}
     {{#if addCustomerClicked}}
+    <div>
       {{> addCustomerForm}}
+    </div>
     {{/if}}
   </p>
 </template>
