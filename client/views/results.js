@@ -11,5 +11,20 @@ Template.results.searchResults = function() {
                                 );
     return results.fetch();
   }
-  return ''
-}
+  return false;
+};
+
+Template.results.created = function() {
+  Session.set("customerButtonClicked", false);
+};
+
+Template.results.addCustomerClicked = function() {
+  return Session.get("customerButtonClicked");
+};
+
+Template.results.events({
+  'click #addCustomer': function(e) {
+    e.preventDefault();
+    Session.set("customerButtonClicked",true);
+  }
+});
