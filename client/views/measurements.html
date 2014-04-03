@@ -1,3 +1,7 @@
 <template name="measurements">
-  Measurements
+  {{#each formItems}}
+    {{> formItem}}
+  {{/each}}
+  <br><br><br>
+  <button class="btn btn-default btn-large form-control" id="submitMeasurements">Submit</button>
 </template>
