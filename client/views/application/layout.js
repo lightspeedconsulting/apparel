@@ -6,4 +6,3 @@ Template.layout.currentCustomerName = function() {
   }
   return '';
 };
-
