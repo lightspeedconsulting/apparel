@@ -1,14 +1,15 @@
 <template name='styleChoices'>
-  <div class='col-xs-2'>
+  <div class='col-md-2 col-xs-3'>
     <div class='btn-group-vertical btn-block'>
       {{#each styleChoiceGrouping}}
       <button type='button' class='btn btn-default' id={{this}}>{{this}}</button>
       {{/each}}
     </div>
+    <br><br><button type='button' class='btn btn-success btn-block' id=submit>Submit Choices</button>
   </div>
-  <div class='col-xs-10'>
+  <div class='col-xs-9'>
     {{#each styleChoice}}
-      <a class='col-sm-3 thumbnail'>
+      <a class='col-sm-3 col-xs-4 thumbnail'>
         <img src="{{path}}" alt="{{caption}}">
         <div class='text-center'>
           <small>{{caption}}</small>
