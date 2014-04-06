@@ -2,3 +2,14 @@
   position: relative;
   transition:all 300ms 0ms ease-in;
 }
+
+.crop {
+  height: 400px;
+  width: 400px;
+  overflow: hidden;
+}
+
+.crop img {
+  height: auto;
+  width: 400px;
+}
