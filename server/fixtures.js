@@ -1,3 +1,7 @@
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 Customers.remove({});
 addCustomer('Tyler', 'Sheffels')
 addCustomer('Duncan', 'Renfrow')
@@ -49,3 +53,21 @@ addForm('Bottom', 'Bottom', 'number')
 addForm('U Rise', 'U Rise', 'number')
 addForm('Front Rise', 'Front Rise', 'number')
 addForm('Inseam', 'Inseam', 'number')
+
+StyleChoices.remove({});
+addStyleChoice('cuffStyle1','images/cuffStyle.png', 'shirts', 'cuffs')
+addStyleChoice('cuffStyle2','images/cuffStyle.png', 'shirts', 'cuffs')
+addStyleChoice('cuffStyle3','images/cuffStyle.png', 'shirts', 'cuffs')
+addStyleChoice('cuffStyle4','images/cuffStyle.png', 'shirts', 'cuffs')
+addStyleChoice('cuffStyle5','images/cuffStyle.png', 'shirts', 'cuffs')
+addStyleChoice('cuffStyle6','images/cuffStyle.png', 'shirts', 'cuffs')
+addStyleChoice('cuffStyle7','images/cuffStyle.png', 'shirts', 'cuffs')
+
+addStyleChoice('collarStyle1','images/collarStyle.png', 'shirts', 'collars')
+addStyleChoice('collarStyle2','images/collarStyle.png', 'shirts', 'collars')
+addStyleChoice('collarStyle3','images/collarStyle.png', 'shirts', 'collars')
+addStyleChoice('collarStyle4','images/collarStyle.png', 'shirts', 'collars')
+addStyleChoice('collarStyle5','images/collarStyle.png', 'shirts', 'collars')
+addStyleChoice('collarStyle6','images/collarStyle.png', 'shirts', 'collars')
+addStyleChoice('collarStyle7','images/collarStyle.png', 'shirts', 'collars')
+

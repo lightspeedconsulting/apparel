@@ -6,3 +6,7 @@ Meteor.publish('customers', function() {
 Meteor.publish('forms', function() {
   return Forms.find();
 });
+
+Meteor.publish('styleChoices', function() {
+  return StyleChoices.find();
+});
