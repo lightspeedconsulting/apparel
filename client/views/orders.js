@@ -1,7 +1,7 @@
 Template.orders.events({
   'click #sendEmail': function(e) {
     e.preventDefault();
-    
+
     //Grab user input
    targetEmail = $('#targetEmail').val();
 
@@ -12,4 +12,7 @@ Template.orders.events({
       "We got email working"
     );
   }
-}); 
+});
+Template.orders.activeOrder = function() {
+  return Orders.find();
+}
