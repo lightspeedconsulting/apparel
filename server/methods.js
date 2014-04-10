@@ -20,6 +20,7 @@ Meteor.methods({
 
     console.log("Sending Email");
 
+    //TODO: render template and not display it
     text = text + "<br>" + "<img src='http://yunaapparel.meteor.com/images/shirt.jpg' width='400' height='400' alt='A Shirt'>";
     
     Email.send({

@@ -1,5 +1,11 @@
 <template name='takePicture'>
-  <div>
-    <video id="camera-stream" autoplay></video>
-  </div>
+  <form role="form">
+    <div class="form-group">
+      <input class="center-block" type="file" accept="image/*" capture="camera"> 
+    </div>
+    <button id="sendPhoto" type="submit" 
+    class="btn btn-success btn-large center-block">
+      Send Photo
+    </button>
+  </form>
 </template>
