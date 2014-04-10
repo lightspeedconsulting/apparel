@@ -5,10 +5,7 @@ Meteor.methods({
   
   addMeasurements:  function(attributes) {
     customerId = attributes.customerId;
-    for(var key in attributes.measurements) {
-      addMeasurementsToCustomer(customerId, key,
-        attributes.measurements[key]);
-    }
+    addMeasurementsToCustomer(customerId, attributes.measurements);
   },
 
   sendEmail: function(to, from, subject, text) {
