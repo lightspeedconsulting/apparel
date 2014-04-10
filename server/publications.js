@@ -10,3 +10,7 @@ Meteor.publish('forms', function() {
 Meteor.publish('styleChoices', function() {
   return StyleChoices.find();
 });
+
+Meteor.publish('orders', function() {
+  return Orders.find();
+});

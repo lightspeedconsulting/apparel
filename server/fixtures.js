@@ -71,3 +71,8 @@ addStyleChoice('collarStyle5','images/collarStyle.png', 'shirts', 'collars')
 addStyleChoice('collarStyle6','images/collarStyle.png', 'shirts', 'collars')
 addStyleChoice('collarStyle7','images/collarStyle.png', 'shirts', 'collars')
 
+
+Orders.remove({});
+Orders.insert({ customerName: 'Tyler', orderDate: '04/09/14', itemName: 'Shirt'});
+Orders.insert({ customerName: 'Duncan', orderDate: '04/08/14', itemName: 'Shirt'});
+Orders.insert({ customerName: 'Brendan', orderDate: '04/07/14', itemName: 'Suit'});

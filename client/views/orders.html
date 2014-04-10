@@ -1,0 +1,18 @@
+<template name='orders'>
+  <div class='row text-center'>
+    <div class='col-xs-4 text-center'>Customer Name</div>
+    <div class='col-xs-3 text-center'>Order Date</div>
+    <div class='col-xs-3 text-center'>Item Type</div>
+    <div class='col-xs-2'>Order More</div>
+  </div>
+  {{#each activeOrder}}
+    <div class='row text-center'>
+      <button type='button' class='btn btn-block btn-default'>
+        <div class='col-xs-4 text-center'>{{customerName}}</div>
+        <div class='col-xs-3 text-center'>{{orderDate}}</div>
+        <div class='col-xs-3 text-center'>{{itemName}}</div>
+        <div class='col-xs-2'><span class='glyphicon glyphicon-plus'></span></div>
+      </button>
+    </div>
+  {{/each}}
+</template>
