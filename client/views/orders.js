@@ -16,4 +16,3 @@ Template.orders.events({
 Template.orders.activeOrder = function() {
   return Orders.find();
 }
- 
