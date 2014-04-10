@@ -33,3 +33,8 @@ Template.measurements.events({
 
   }
 });
+
+Template.measurements.rendered = function() {
+  firstFormId = Forms.findOne()._id;
+  $('#'+firstFormId).focus();
+};
