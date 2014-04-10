@@ -1,3 +1,3 @@
 addOrder = function(customerId, orderAttributes) {
-  //Todo: Implement this
+  currentDate = new Date();
 }
