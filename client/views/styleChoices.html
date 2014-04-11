@@ -2,19 +2,27 @@
   <div class='col-md-2 col-xs-3'>
     <div class='btn-group-vertical btn-block'>
       {{#each styleChoiceGrouping}}
-      <button type='button' class='btn btn-default' id={{this}}>{{this}}</button>
+      <button type='button' class='btn btn-default list-item' id={{this}}>{{this}}</button>
       {{/each}}
     </div>
-    <br><br><button type='button' class='btn btn-success btn-block' id=submit>Submit Choices</button>
+    <br><br><button type='button' class='btn btn-success btn-block' id=submitChoices>Submit Choices</button>
   </div>
-  <div class='col-xs-9'>
+  <div class='col-xs-9 col-md-8'>
     {{#each styleChoice}}
-      <a class='col-sm-3 col-xs-4 thumbnail'>
+      <a class='col-sm-3 col-xs-4 thumbnail' id="{{caption}}">
         <img src="{{path}}" alt="{{caption}}">
         <div class='text-center'>
           <small>{{caption}}</small>
         </div>
       </a>
+    {{/each}}
+  </div>
+  <div class='col-xs-4 col-md-2 text-center'>
+    <big>Current Choices</big>
+    {{#each selectedChoice}}
+    <div class='row'>
+      Test{{this}}
+    </div>
     {{/each}}
   </div>
 </template>
