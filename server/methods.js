@@ -27,10 +27,6 @@ Meteor.methods({
       html: text
     });
    },
-  saveImageUrl: function(url) {
-    //TODO: this is a blocking call due to omitting call back
-    Images.insert(url);
-  },
    createNewOrder: function(attributes) {
     return addOrder(attributes.customerId, attributes.styleChoices, attributes.itemType);
    }

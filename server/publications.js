@@ -14,3 +14,7 @@ Meteor.publish('styleChoices', function() {
 Meteor.publish('orders', function() {
   return Orders.find();
 });
+
+Meteor.publish('images', function() {
+  return Images.find();
+});
