@@ -12,7 +12,7 @@ addCustomer('Brendan', 'Nolan')
 addCustomer('John', 'Doe')
 addCustomer('Jim', 'Raynor')
 addCustomer('Mike', 'Hunt')
-addCustomer('James', 'Bond')
+jb = addCustomer('James', 'Bond')
 addCustomer('Sean', 'Connery')
 addCustomer('Woody', 'Allen')
 addCustomer('Brad', 'Pitt')
@@ -54,6 +54,32 @@ addForm('U Rise', 'U Rise', 'number')
 addForm('Front Rise', 'Front Rise', 'number')
 addForm('Inseam', 'Inseam', 'number')
 
+addMeasurementsToCustomer(jb,
+{'Collar': 15,
+'Chest': 15,
+'Waist': 15,
+'Front Chest': 15,
+'Chest with Arms': 15,
+'Back Chest': 15,
+'Shoulders': 15,
+'Half Shoulder': 15,
+'Sleeves': 15,
+'Bicep': 15,
+'Armpit': 15,
+'Front Length': 15,
+'Vest Length': 15,
+'Waist': 15,
+'Hips': 15,
+'Length': 15,
+'Thigh': 15,
+'Knee': 15,
+'Calf': 15,
+'Bottom': 15,
+'U Rise': 15,
+'Front Rise': 15,
+'Inseam': 15} );
+
+
 StyleChoices.remove({});
 addStyleChoice('cuffStyle1','images/cuffStyle.png', 'shirts', 'cuffs')
 addStyleChoice('cuffStyle2','images/cuffStyle.png', 'shirts', 'cuffs')
@@ -73,6 +99,6 @@ addStyleChoice('collarStyle7','images/collarStyle.png', 'shirts', 'collars')
 
 
 Orders.remove({});
-Orders.insert({ customerName: 'Tyler', orderDate: '04/09/14', itemName: 'Shirt'});
-Orders.insert({ customerName: 'Duncan', orderDate: '04/08/14', itemName: 'Shirt'});
-Orders.insert({ customerName: 'Brendan', orderDate: '04/07/14', itemName: 'Suit'});
+Orders.insert({ customerName: 'Tyler', orderDate: '04/09/14', itemType: 'Shirt'});
+Orders.insert({ customerName: 'Duncan', orderDate: '04/08/14', itemType: 'Shirt'});
+Orders.insert({ customerName: 'Brendan', orderDate: '04/07/14', itemType: 'Suit'});

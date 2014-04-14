@@ -5,11 +5,9 @@ addCustomer = function(firstName, lastName, email) {
     fullName: firstName + ' ' + lastName});
 };
 
-addMeasurementsToCustomer = function(customerId, measurementName, measurementValue) {
+addMeasurementsToCustomer = function(customerId, measurementsHash) {
   //TODO: should we always return the updated customer document?
   //Because at the moment we're returning the # of docs updated
-  measurement = {};
-  measurement[measurementName] = measurementValue;
-  return Customers.update(customerId, 
-    {$set: measurement});  
+  return Customers.update(customerId,
+    {$set: { measurements: measurementsHash } } );
 };
