@@ -4,11 +4,16 @@ Template.orders.events({
 
     //Grab user input
     targetEmail = $('#targetEmail').val();
-    //toBeOrderedArray = $('.btn-success');
+    toBeOrderedArray = []
+    $('.btn-success').each(function(){
+      var input = $(this);
+      orderId = input.attr('id');
+      toBeOrderedArray.push(orderId);
+    });
 
     attributes = {
       targetEmail: targetEmail,
-      toBeOrderedArray: '',
+      toBeOrderedArray: toBeOrderedArray,
       fromEmail: 'duncanrenfrow@gmail.com'
     }
 
