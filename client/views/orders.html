@@ -1,20 +1,20 @@
 <template name='orders'>
   <div class='row text-center'>
-    <div class='col-xs-4 text-center'>Customer Name</div>
-    <div class='col-xs-3 text-center'>Order Date</div>
-    <div class='col-xs-3 text-center'>Item Type</div>
-    <div class='col-xs-2'>Order More</div>
+    <div class='col-xs-4'>Customer Name</div>
+    <div class='col-xs-3'>Order Date</div>
+    <div class='col-xs-3'>Item Type</div>
+    <div class='col-xs-2'>Order</div>
   </div>
-  {{#each activeOrder}}
-    <div class='row text-center'>
-      <button type='button' class='btn btn-block btn-default'>
-        <div class='col-xs-4 text-center'>{{customerName}}</div>
-        <div class='col-xs-3 text-center'>{{orderDate}}</div>
-        <div class='col-xs-3 text-center'>{{itemType}}</div>
+  <div class='btn-group-vertical btn-block'>
+    {{#each activeOrder}}
+      <button type='button' id='{{_id}}' class='btn btn-block btn-default active-order list-item text-center'>
+        <div class='col-xs-4'>{{customerName}}</div>
+        <div class='col-xs-3'>{{orderDate}}</div>
+        <div class='col-xs-3'>{{itemType}}</div>
         <div class='col-xs-2'><span class='glyphicon glyphicon-plus'></span></div>
       </button>
-    </div>
-  {{/each}}
+    {{/each}}
+  </div>
   <h3 class="text-center">Review and send orders</h3>
   <form role="form">
     <div class="form-group">
@@ -23,7 +23,7 @@
         placeholder="Enter email">
       </div>
       <button type="submit" id="sendEmail" 
-        class="center-block btn btn-success btn-large">
+        class="center-block btn btn-primary btn-large">
         Send Order
       </button>
     </form>

@@ -59,6 +59,8 @@ Template.styleChoices.events = ({
         throwError(error.reason);
         Router.go('styleChoices/' + this.type);
       }
+
+      Router.go('orders');
     })
   }
 })
