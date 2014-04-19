@@ -5,6 +5,7 @@ addOrder = function(customerId, styleChoices, itemType) {
   customerName = customer.fullName;
 
   return Orders.insert({
+    customerId: customerId,
     customerName: customerName,
     itemType: itemType,
     measurements: measurementsHash,

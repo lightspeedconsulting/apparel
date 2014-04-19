@@ -14,10 +14,10 @@ Template.orders.events({
     attributes = {
       targetEmail: targetEmail,
       toBeOrderedArray: toBeOrderedArray,
-      fromEmail: 'duncanrenfrow@gmail.com'
+      fromEmail: 'tyler.sheffels@gmail.com',
+      customerId: Session.get('currentCustomer')
     }
 
-    console.log(attributes)
     Meteor.call('sendEmail', attributes);
   },
 

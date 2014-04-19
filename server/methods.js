@@ -12,18 +12,16 @@ Meteor.methods({
     // TODO: redo the check...
     //check([to, from, subject, text], [String]);
 
+    //Throw error if fields are null
+
     //Let other method calls from same client start
     //running without waiting for email sending to
     //complete
 
-    console.log(attributes);
+    var emailObject = buildEmail(attributes.targetEmail, attributes.fromEmail, attributes.customerId, attributes.toBeOrderedArray);
 
-    // Email.send({
-    //   to: to,
-    //   from: from,
-    //   subject: subject,
-    //   html: text
-    // });
+    Email.send(emailObject);
+
    },
    createNewOrder: function(attributes) {
     return addOrder(attributes.customerId, attributes.styleChoices, attributes.itemType);

@@ -11,3 +11,6 @@ addMeasurementsToCustomer = function(customerId, measurementsHash) {
   return Customers.update(customerId,
     {$set: { measurements: measurementsHash } } );
 };
+getCustomerMeasurements = function(customerId) {
+  return Customers.findOne({_id: customerId}, {measurements: 1}).measurements
+}
