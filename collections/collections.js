@@ -3,7 +3,7 @@ Forms = new Meteor.Collection('forms');
 StyleChoices = new Meteor.Collection('styleChoices');
 Orders = new Meteor.Collection('orders');
 Images = new FS.Collection("images", {
-  stores: [new FS.Store.FileSystem("images", {path: "~/meteor_apps/apparel/uploads", maxTries:10})]
+  stores: [new FS.Store.FileSystem("images", {path: process.env.UPLOAD_PATH, maxTries:10})]
 });
 FS.debug = true;
 
