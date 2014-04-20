@@ -4,3 +4,7 @@ addStyleChoice = function (caption, path, clothingType, grouping) {
                        clothingType: clothingType,
                        grouping: grouping});
 }
+
+getStyleChoiceImage = function (caption) {
+  return StyleChoices.findOne({caption: caption}).path
+}
