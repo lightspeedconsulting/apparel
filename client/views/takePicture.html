@@ -1,4 +1,7 @@
 <template name='takePicture'>
+  {{#each images}}
+    <img src="{{url}}" alt="an Image" width="400" height="400">
+  {{/each}}
   <form role="form">
     <div class="form-group">
       <input  id="photoInput" class="center-block" type="file" accept="image/*" capture="camera"> 

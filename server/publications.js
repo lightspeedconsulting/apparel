@@ -16,5 +16,5 @@ Meteor.publish('orders', function() {
 });
 
 Meteor.publish('images', function() {
-  return Images.find();
+  return Images.find({}, {sort: {updatedAt: -1}, limit: 1});
 });
