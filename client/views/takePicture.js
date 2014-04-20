@@ -8,9 +8,10 @@ Template.takePicture.events({
     //FS.Utility.eachFile, but since it's so new worried about API
     //changing
     FS.Utility.eachFile(e, function(file) {
-      file.customer = Session.get('currentCustomer');
-      file.view = 'Front';
-      Images.insert(file, function(error, fileObj) {
+      var newFile = new FS.File(file);
+      newFile.metadata = {customer: Session.get('currentCustomer'),
+        view: 'Front'};
+      Images.insert(newFile, function(error, fileObj) {
         if(error) {
           throwError(error.reason);
         }

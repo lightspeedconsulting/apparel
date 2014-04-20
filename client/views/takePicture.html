@@ -1,5 +1,6 @@
 <template name='takePicture'>
   {{#each images}}
+    {{metadata.view}}
     <img src="{{url}}" alt="an Image" width="400" height="400">
   {{/each}}
   <form role="form">
