@@ -1,11 +1,31 @@
 <template name='takePicture'>
-  {{#each images}}
-    {{metadata.view}}
-    <img src="{{url}}" alt="an Image" width="400" height="400">
-  {{/each}}
-  <form role="form">
-    <div class="form-group">
-      <input  id="photoInput" class="center-block" type="file" accept="image/*" capture="camera"> 
-    </div>
-  </form>
+  <div class="text-center">
+    <h3><small>Please take front picture</small></h3>
+    {{#each images "Front"}}
+      <img src="{{url}}" alt="an Image" width="400" height="400">
+    {{/each}}
+    <form role="form">
+      <div class="form-group">
+        <input  id="photoInputFront" class="center-block" type="file" accept="image/*" capture="camera"> 
+      </div>
+    </form>
+    <h3><small>Please take Side picture</small></h3>
+    {{#each images "Side"}}
+      <img src="{{url}}" alt="an Image" width="400" height="400">
+    {{/each}}
+    <form role="form">
+      <div class="form-group">
+        <input  id="photoInputSide" class="center-block" type="file" accept="image/*" capture="camera"> 
+      </div>
+    </form>
+    <h3><small>Please take Back picture</small></h3>
+    {{#each images "Back"}}
+      <img src="{{url}}" alt="an Image" width="400" height="400">
+    {{/each}}
+    <form role="form">
+      <div class="form-group">
+        <input  id="photoInputBack" class="center-block" type="file" accept="image/*" capture="camera"> 
+      </div>
+    </form>
+  </div>
 </template>
