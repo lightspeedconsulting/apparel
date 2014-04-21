@@ -24,7 +24,7 @@ Template.layout.events({
 });
 
 Template.layout.events({
-  'click a': function(e) {
+  'click .customerNames': function(e) {
     Session.set('currentCustomer', this._id);
   }
 });
