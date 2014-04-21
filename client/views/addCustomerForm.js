@@ -10,16 +10,19 @@ Template.addCustomerForm.events({
       email: email,
       firstName: firstName,
       lastName: lastName
-    }
+    };
     Meteor.call('createNewCustomer', attributes,
-      function(error, attributes) {
+      function(error, customerId) {
       if (error) {
         throwError(error.reason);
         Router.go('customers');
       }
 
-      Session.set("currentCustomer", attributes.customerId);
-      Router.go('measurements', {});
+      console.log(customerId);
+      Session.set("currentCustomer", customerId);
+      Session.set("customerButtonClicked", false);
+      $('#customerSearch').val("");
+      Session.set('searchQuery', "");
     });
   }
-})
+});

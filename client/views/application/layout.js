@@ -6,3 +6,25 @@ Template.layout.currentCustomerName = function() {
   }
   return '';
 };
+Template.layout.events({
+  'keyup #customerSearch': function(e) {
+    Session.set("searchQuery", e.currentTarget.value);
+  }
+});
+
+Template.layout.rendered = function() {
+  $('#customerSearch').focus();
+};
+
+Template.layout.events({
+  'click #addCustomer': function(e) {
+    e.preventDefault();
+    Session.set("customerButtonClicked",true);
+  }
+});
+
+Template.layout.events({
+  'click a': function(e) {
+    Session.set('currentCustomer', this._id);
+  }
+});

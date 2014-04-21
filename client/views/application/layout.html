@@ -18,11 +18,27 @@
     </nav>
     {{> errors}}
     <div class="page-header text-center">
-      {{#if currentCustomerName}}
-        <h1><small>Customer: {{currentCustomerName}}</small></h1>
-      {{else}}
-        <h1><small>No Customer Selected</small></h1>
-      {{/if}}
+      <div class="row">
+        {{#if currentCustomerName}}
+          <h1><small>Customer: {{currentCustomerName}}</small></h1>
+        {{else}}
+          <h1><small>No Customer Selected</small></h1>
+        {{/if}}
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button class="btn btn-default btn-large" id="addCustomer">
+                 Add New Customer</button>
+            </span>
+              <input type='text' class="form-control" placeholder='Customer Name' id='customerSearch'/><br>
+            </div>
+            <div class='text-center row'>
+              {{> results}}
+            </div>
+          </div>
+        </div>
     </div>
     <div id="main" class="row">
       {{> yield}}

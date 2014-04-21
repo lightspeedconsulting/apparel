@@ -1,19 +1,20 @@
 <template name='results'>
-  <p>
-    <div class='list-group'>
-      {{#each searchResults}}
-        {{> searchResult}}
-      {{/each}}
-    </div>
-    {{#unless addCustomerClicked}}
-      {{#unless searchResults}}
-        <button class="btn btn-default btn-large" id="addCustomer">Add Customer</button>
+  <div class="dropdown">
+    <p>
+      <div class='list-group'>
+        {{#each searchResults}}
+          {{> searchResult}}
+        {{/each}}
+      </div>
+      {{#unless addCustomerClicked}}
+        {{#unless searchResults}}
+        {{/unless}}
       {{/unless}}
-    {{/unless}}
-    {{#if addCustomerClicked}}
-    <div>
-      {{> addCustomerForm}}
-    </div>
-    {{/if}}
-  </p>
+      {{#if addCustomerClicked}}
+      <div>
+        {{> addCustomerForm}}
+      </div>
+      {{/if}}
+    </p>
+  </div>
 </template>

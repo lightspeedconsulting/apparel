@@ -23,8 +23,10 @@ Template.results.addCustomerClicked = function() {
 };
 
 Template.results.events({
-  'click #addCustomer': function(e) {
-    e.preventDefault();
-    Session.set("customerButtonClicked",true);
+  'click .customerNames': function(e) {
+    //TODO: this feels a little hacky...basically manually resetting input
+    //TODO: also we duplicate this code here in addCustomerForm.js
+    $('#customerSearch').val("");
+    Session.set('searchQuery', "");
   }
 });
