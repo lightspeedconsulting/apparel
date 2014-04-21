@@ -13,3 +13,15 @@ addOrder = function(customerId, styleChoices, itemType) {
     orderDate: currentDate
   });
 }
+
+getStyleChoices = function(orderId) {
+  return Orders.findOne({_id: orderId}).styleChoices;
+}
+
+getOrderItemType = function(orderId) {
+  return Orders.findOne({_id: orderId}).itemType;
+}
+
+getOrderDate = function(orderId) {
+  return Orders.findOne({_id: orderId}).orderDate;
+}
