@@ -9,20 +9,20 @@ Template.styleChoices.styleChoiceGrouping = function () {
 
   sci.forEach(function(sc) {
     styleChoiceGroupArray.push(sc.grouping);
-  })
+  });
 
   styleChoiceGroupArray = _.uniq(styleChoiceGroupArray);
 
   return styleChoiceGroupArray;
-}
+};
 
 Template.styleChoices.styleChoice = function () {
   return StyleChoices.find({clothingType: this.type, grouping: Session.get('currentStyleChoice')});
-}
+};
 
 Template.styleChoices.selectedChoice = function () {
   return _.values(Session.get('styleChoiceHash'));
-}
+};
 
 Template.styleChoices.events = ({
   'click button.list-item': function(e) {
@@ -56,12 +56,13 @@ Template.styleChoices.events = ({
 
     Meteor.call('createNewOrder', attributes, function(error, attributes) {
       if(error) {
-        throwError(error.reason);
+        throwError(error.reason, "alert-danger");
         Router.go('styleChoices/' + this.type);
       }
 
-      Router.go('orders');
-    })
+      Router.go('landing');
+      throwError("Style options successfully submitted", "alert-success");
+    });
   }
-})
+});
 

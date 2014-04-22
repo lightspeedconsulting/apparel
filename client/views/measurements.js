@@ -23,12 +23,13 @@ Template.measurements.events({
     Meteor.call('addMeasurements',attributes, 
       function(error, attributes) {
         if(error) {
-          throwError(error.reason);
+          throwError(error.reason, "alert-danger");
           Router.go('measurements');
         }
         //TODO: Do we want to flash a message here like "success"
         //or "Customer [name] had X measurements added?
         Router.go('landing');
+        throwError("Measurements Submitted", "alert-success");
     });
 
   }
