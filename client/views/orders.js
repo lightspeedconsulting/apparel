@@ -18,7 +18,16 @@ Template.orders.events({
       customerId: Session.get('currentCustomer')
     }
 
-    Meteor.call('sendEmail', attributes);
+    Meteor.call('sendEmail', attributes,
+      function(error, attributes) {
+        if(error) {
+          throwError(error.reason, "alert-danger");
+          Router.go('orders');
+        }
+        Session.set('emailText', attributes.html);
+        Router.go('review');
+        throwError("Review this order", "alert-success");
+    });
   },
 
   'click .active-order.btn-default': function(e) {

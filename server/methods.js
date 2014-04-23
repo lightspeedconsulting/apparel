@@ -22,6 +22,7 @@ Meteor.methods({
 
     Email.send(emailObject);
 
+    return emailObject;
    },
    createNewOrder: function(attributes) {
     return addOrder(attributes.customerId, attributes.styleChoices, attributes.itemType);

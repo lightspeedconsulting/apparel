@@ -1,9 +1,11 @@
+String.prototype.capitalize = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+
 if (Meteor.isServer) {
   Meteor.startup(function () {
     if(Customers.findOne().length === 0){
-      String.prototype.capitalize = function() {
-          return this.charAt(0).toUpperCase() + this.slice(1);
-      }
 
       Customers.remove({});
       addCustomer('Tyler', 'Sheffels')

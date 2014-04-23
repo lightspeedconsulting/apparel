@@ -3,12 +3,12 @@ buildEmail = function(to, from, customerId, orderIdArr) {
 
   var htmlText = ''
   htmlText = htmlText.concat(
-    openBody()
-    ,openTable()
+    //openBody(),
+    openTable()
     ,measurementsTable(customerMeasurements)
     ,styleChoicesTable(orderIdArr)
     ,closeTable()
-    ,closeBody()
+    //,closeBody()
     )
 
   console.log(htmlText)
@@ -90,4 +90,5 @@ opentr = function() {return '<tr>'}
 closetr = function() {return '</tr>'}
 opentd = function() {return '<td>'}
 closetd = function() {return '</td>'}
-styleChoiceImageTag = function(image) {return '<img src="public/styleChoices/' + image + '">'}
+//styleChoiceImageTag = function(image) {return '<img src="public/styleChoices/' + image + '">'}
+styleChoiceImageTag = function(image) {return '<img src="styleChoices/' + image + '">'}
