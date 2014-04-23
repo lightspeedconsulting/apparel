@@ -25,5 +25,8 @@ Meteor.methods({
    },
    createNewOrder: function(attributes) {
     return addOrder(attributes.customerId, attributes.styleChoices, attributes.itemType);
+   },
+   removeImage: function(imageId) {
+    return removeSingleImage(imageId);
    }
 });

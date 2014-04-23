@@ -9,6 +9,7 @@
         <input  id="photoInputFront" class="center-block" type="file" accept="image/*" capture="camera"> 
       </div>
     </form>
+    <button type="button" class="btn btn-large btn-danger" id="removeFront">Remove</button>
     <h3><small>Please take Side picture</small></h3>
     {{#each images "Side"}}
       <img src="{{url}}" alt="an Image" width="400" height="400">
@@ -18,6 +19,7 @@
         <input  id="photoInputSide" class="center-block" type="file" accept="image/*" capture="camera"> 
       </div>
     </form>
+    <button type="button" class="btn btn-large btn-danger" id="removeSide">Remove</button>
     <h3><small>Please take Back picture</small></h3>
     {{#each images "Back"}}
       <img src="{{url}}" alt="an Image" width="400" height="400">
@@ -27,5 +29,6 @@
         <input  id="photoInputBack" class="center-block" type="file" accept="image/*" capture="camera"> 
       </div>
     </form>
+    <button type="button" class="btn btn-large btn-danger" id="removeBack">Remove</button>
   </div>
 </template>
