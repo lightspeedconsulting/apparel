@@ -6,14 +6,12 @@
           {{> searchResult}}
         {{/each}}
       </div>
-      {{#unless addCustomerClicked}}
-        {{#unless searchResults}}
-        {{/unless}}
-      {{/unless}}
       {{#if addCustomerClicked}}
-      <div>
-        {{> addCustomerForm}}
-      </div>
+        {{#unless searchResults}}
+          <div>
+            {{> addCustomerForm}}
+          </div>
+        {{/unless}}
       {{/if}}
     </p>
   </div>
