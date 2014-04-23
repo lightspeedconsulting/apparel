@@ -1,18 +1,18 @@
 <template name='results'>
-  <div class="dropdown">
-    <p>
-      <div class='list-group'>
-        {{#each searchResults}}
-          {{> searchResult}}
-        {{/each}}
+  {{#if searchResults}}
+    <div class='row list-group col-xs-4 col-xs-offset-4'>
+      <ul>
+      {{#each searchResults}}
+        {{> searchResult}}
+      {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+  {{#if addCustomerClicked}}
+    {{#unless searchResults}}
+      <div class='row'>
+        {{> addCustomerForm}}
       </div>
-      {{#if addCustomerClicked}}
-        {{#unless searchResults}}
-          <div>
-            {{> addCustomerForm}}
-          </div>
-        {{/unless}}
-      {{/if}}
-    </p>
-  </div>
+    {{/unless}}
+  {{/if}}
 </template>

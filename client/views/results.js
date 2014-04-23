@@ -28,5 +28,6 @@ Template.results.events({
     //TODO: also we duplicate this code here in addCustomerForm.js
     $('#customerSearch').val("");
     Session.set('searchQuery', "");
+    Session.set("customerButtonClicked", false);
   }
 });
