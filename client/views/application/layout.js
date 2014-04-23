@@ -19,7 +19,8 @@ Template.layout.rendered = function() {
 Template.layout.events({
   'click #addCustomer': function(e) {
     e.preventDefault();
-    Session.set("customerButtonClicked",true);
+    prevValue = Session.get('customerButtonClicked')
+    Session.set("customerButtonClicked",!prevValue);
   }
 });
 
