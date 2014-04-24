@@ -65,6 +65,11 @@ Template.takePicture.events({
   
     removeImages("Back");    
   },
+  'click #reviewOrder': function(e) {
+    e.preventDefault();
+
+    Router.go('landing');
+  },
 });
 
 Template.takePicture.helpers({
