@@ -69,6 +69,7 @@ Template.takePicture.events({
     e.preventDefault();
 
     Router.go('landing');
+    throwError("Photos successfully submitted", "alert-success");
   },
 });
 
