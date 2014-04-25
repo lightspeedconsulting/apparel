@@ -28,7 +28,7 @@ Template.review.events({
         function(error, attributes) {
           if(error) {
             throwError(error.reason, "alert-danger");
-            Router.go('orders');
+            Router.go('landing');
           }
           Session.set('emailText', attributes.html);
           Router.go('review');
