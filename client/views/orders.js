@@ -3,10 +3,11 @@ Template.orders.events({
     e.preventDefault();
     targetEmail = $('#targetEmail').val();
     
-    //Note: this depends on below event adding the btn-success class
-    if($('.btn-success').length && targetEmail) {
+    //Note: this depends on below event adding the success class
+    //to a table row
+    if($('.success').length && targetEmail) {
       toBeOrderedArray = [];
-      $('.btn-success').each(function(){
+      $('.success').each(function(){
         var input = $(this);
         orderId = input.attr('id');
         toBeOrderedArray.push(orderId);
@@ -36,16 +37,17 @@ Template.orders.events({
     }
   },
 
-  'click .active-order.btn-default': function(e) {
+  'click .orderRow.default': function(e) {
     e.preventDefault();
+    console.log("Clicked a row");
     var current = e.currentTarget.id;
-    $("#" + current).addClass('btn-success').removeClass('btn-default');
+    $("#" + current).addClass('success').removeClass('default');
   },
 
-  'click .active-order.btn-success': function(e) {
+  'click .orderRow.success': function(e) {
     e.preventDefault();
     var current = e.currentTarget.id;
-    $("#" + current).addClass('btn-default').removeClass('btn-success');
+    $("#" + current).removeClass('success').addClass('default');
   }
 });
 Template.orders.activeOrder = function() {

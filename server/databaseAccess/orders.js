@@ -1,5 +1,5 @@
 addOrder = function(customerId, styleChoices, itemType) {
-  currentDate = new Date();
+  currentDate = new Date().toDateString();
   customer = Customers.findOne({_id: customerId}, {measurements: 1, fullName: 1});
   measurementsHash = customer.measurements;
   customerName = customer.fullName;
@@ -23,5 +23,5 @@ getOrderItemType = function(orderId) {
 };
 
 getOrderDate = function(orderId) {
-  return Orders.findOne({_id: orderId}).orderDate.toDateString();
+  return Orders.findOne({_id: orderId}).orderDate;
 };
