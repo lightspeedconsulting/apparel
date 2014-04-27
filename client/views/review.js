@@ -4,12 +4,12 @@ Template.review.emailText = function() {
 };
 
 Template.review.events({
-  'click #sendEmail': function() {
+  'click #sendEmail': function(e) {
     e.preventDefault();
     //Grab user input
 
     //the empty string "", undefined, and null are all falsy 
-    Meteor.call('sendEmail', 
+    Meteor.call('sendEmail', Session.get('emailId'),
         function(error) {
           if(error) {
             throwError(error.reason, "alert-danger");

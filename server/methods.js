@@ -8,7 +8,7 @@ Meteor.methods({
     addMeasurementsToCustomer(customerId, attributes.measurements);
   },
 
-  sendEmail: function(attributes) {
+  sendEmail: function(emailId) {
     // TODO: redo the check...
     //check([to, from, subject, text], [String]);
 
@@ -18,11 +18,9 @@ Meteor.methods({
     //running without waiting for email sending to
     //complete
 
-    var emailObject = buildEmail(attributes.targetEmail, attributes.fromEmail, attributes.customerId, attributes.toBeOrderedArray);
 
-    Email.send(emailObject);
-
-    return emailObject;
+    var email = Emails.findOne(emailId);
+    Email.send(email);
    },
    buildEmailForReview: function(attributes) {
     return buildEmail(attributes.targetEmail, attributes.fromEmail, attributes.customerId, attributes.toBeOrderedArray);
