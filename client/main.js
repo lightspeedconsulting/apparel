@@ -4,3 +4,4 @@ Meteor.subscribe('errors');
 Meteor.subscribe('styleChoices');
 Meteor.subscribe('orders');
 Meteor.subscribe('images');
+Meteor.subscribe('emails');

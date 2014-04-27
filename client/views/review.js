@@ -1,41 +1,22 @@
 Template.review.emailText = function() {
-  return Session.get('emailText');
+  var email = Emails.findOne(Session.get('emailId'));
+  return email.html;
 };
 
 Template.review.events({
   'click #sendEmail': function() {
     e.preventDefault();
     //Grab user input
-    targetEmail = $('#targetEmail').val();
 
     //the empty string "", undefined, and null are all falsy 
-    if(targetEmail) {
-      toBeOrderedArray = [];
-      $('.btn-success').each(function(){
-        var input = $(this);
-        orderId = input.attr('id');
-        toBeOrderedArray.push(orderId);
-      });
-
-      attributes = {
-        targetEmail: targetEmail,
-        toBeOrderedArray: toBeOrderedArray,
-        fromEmail: 'tyler.sheffels@gmail.com',
-        customerId: Session.get('currentCustomer')
-      };
-
-      Meteor.call('sendEmail', attributes,
-        function(error, attributes) {
+    Meteor.call('sendEmail', 
+        function(error) {
           if(error) {
             throwError(error.reason, "alert-danger");
             Router.go('landing');
           }
-          Session.set('emailText', attributes.html);
-          Router.go('review');
-          throwError("Review this order", "alert-success");
+          Router.go('landing');
+          throwError("Order sent successfully", "alert-success");
       });
-    } else {
-      throwError("Please enter an email", "alert-danger");
-    }
   },
 });

@@ -19,3 +19,7 @@ Meteor.publish('orders', function() {
 Meteor.publish('images', function() {
   return Images.find();
 });
+
+Meteor.publish('emails', function() {
+  return Emails.find();
+});

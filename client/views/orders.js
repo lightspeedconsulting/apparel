@@ -1,12 +1,38 @@
 Template.orders.events({
   'click #reviewOrder': function(e) {
     e.preventDefault();
-    //Checking to see if any orders selected
+    targetEmail = $('#targetEmail').val();
+    
     //Note: this depends on below event adding the btn-success class
-    if($('.btn-success').length) {
-      Router.go('review');
+    if($('.btn-success').length && targetEmail) {
+      toBeOrderedArray = [];
+      $('.btn-success').each(function(){
+        var input = $(this);
+        orderId = input.attr('id');
+        toBeOrderedArray.push(orderId);
+      });
+
+      attributes = {
+        targetEmail: targetEmail,
+        toBeOrderedArray: toBeOrderedArray,
+        fromEmail: 'tyler.sheffels@gmail.com',
+        customerId: Session.get('currentCustomer')
+      };
+
+      Meteor.call('buildEmailForReview', attributes,
+        function(error, emailId) {
+          if(error) {
+            throwError(error.reason, "alert-danger");
+            Router.go('order');
+          }
+          Session.set('emailId', emailId);
+          Router.go('review');
+          throwError("Review this order", "alert-success");
+
+      });
     } else {
-      throwError("No Order Selected!", "alert-danger");
+      throwError("Please select an order and fill in an email address!", 
+          "alert-danger");
     }
   },
 

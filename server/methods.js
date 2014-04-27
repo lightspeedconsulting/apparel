@@ -24,6 +24,10 @@ Meteor.methods({
 
     return emailObject;
    },
+   buildEmailForReview: function(attributes) {
+    return buildEmail(attributes.targetEmail, attributes.fromEmail, attributes.customerId, attributes.toBeOrderedArray);
+
+  },
    createNewOrder: function(attributes) {
     return addOrder(attributes.customerId, attributes.styleChoices, attributes.itemType);
    },
