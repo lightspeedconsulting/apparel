@@ -12,16 +12,16 @@ addOrder = function(customerId, styleChoices, itemType) {
     styleChoices: styleChoices,
     orderDate: currentDate
   });
-}
+};
 
 getStyleChoices = function(orderId) {
   return Orders.findOne({_id: orderId}).styleChoices;
-}
+};
 
 getOrderItemType = function(orderId) {
   return Orders.findOne({_id: orderId}).itemType;
-}
+};
 
 getOrderDate = function(orderId) {
-  return Orders.findOne({_id: orderId}).orderDate;
-}
+  return Orders.findOne({_id: orderId}).orderDate.toDateString();
+};

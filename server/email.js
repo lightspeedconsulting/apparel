@@ -6,8 +6,8 @@ buildEmail = function(to, from, customerId, orderIdArr) {
     //openBody(),
     openTable(),
     measurementsTable(customerMeasurements),
-    styleChoicesTable(orderIdArr),
-    closeTable()
+    closeTable(),
+    styleChoicesTable(orderIdArr)
     //,closeBody()
     );
 
@@ -26,12 +26,15 @@ measurementsTable = function(customerMeasurements) {
 };
 
 styleChoicesTable = function(orderIdArr) {
+  console.log(orderIdArr);
   orderTable = '';
   _.each(orderIdArr, function(value, key, list) {
     styleChoiceHash = getStyleChoices(value);
-    orderTable = orderTable +
+    orderTable =  orderTable + '<hr>' + openTable() +  
       orderHeader(value) +
-      buildStyleChoiceTable(styleChoiceHash);
+      buildStyleChoiceTable(styleChoiceHash) + closeTable();
+      console.log(value);
+      console.log(orderTable);
   });
   return orderTable;
 };
