@@ -1,3 +1,7 @@
+Template.orders.rendered = function() {
+  Session.set('expandedOrderIds', {});
+};
+
 Template.orders.events({
   'click #reviewOrder': function(e) {
     e.preventDefault();
@@ -39,7 +43,6 @@ Template.orders.events({
 
   'click .orderRow.default': function(e) {
     e.preventDefault();
-    console.log("Clicked a row");
     var current = e.currentTarget.id;
     $("#" + current).addClass('success').removeClass('default');
   },
@@ -48,8 +51,55 @@ Template.orders.events({
     e.preventDefault();
     var current = e.currentTarget.id;
     $("#" + current).removeClass('success').addClass('default');
+  },
+  'click .expand': function(e) {
+    e.preventDefault();
+
+    orderIds = Session.get('expandedOrderIds');
+    orderId = this._id;
+    //Using an object here to mimic a set, don't want
+    //multiple clicks to add duplicate orderIds. 
+    if(orderId in orderIds) {
+      delete orderIds[orderId];
+    } else { 
+      orderIds[orderId] = true;
+    }
+    Session.set('expandedOrderIds', orderIds);
   }
+
 });
 Template.orders.activeOrder = function() {
   return Orders.find();
 };
+
+Template.orders.helpers({
+  isOrdered: function(orderId) {
+    orderIds = Session.get('expandedOrderIds');
+    if(orderId in orderIds) {
+      return true;
+    }
+    return false;
+  },
+  getMeasurements: function(orderId) {
+    var html = "<table class='table table-hover'><tr class='info'><th>Measurement</th><th>Value</th></tr>";
+    var order = Orders.findOne(orderId);
+    _.each(order.measurements, function(value, key) {
+      html += '<tr><td>' + key + '</td><td>' + value + 
+      '</td></tr>';
+    });
+    html += '</table>';
+    return html;
+  },
+  getStyleChoices: function(orderId) {
+    var html = "<table class='table table-hover'><tr class='info'><th>Style Category</th><th>Option</th></tr>";
+    var order = Orders.findOne(orderId);
+    console.log(order.styleChoices);
+    _.each(order.styleChoices, function(value, key) {
+      html += '<tr><td>' + key + '</td><td>' + value + 
+      '</td></tr>';
+    });
+    html += '</table>';
+    console.log(html);
+    return html;
+   }
+});

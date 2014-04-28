@@ -13,7 +13,20 @@
           <td>{{customerName}}</td>
           <td>{{orderDate}}</td>
           <td>{{itemType}}</td>
+          <td><button type="button" class="btn btn-default expand">
+              Expand
+          </button></td>
         </tr>
+        {{#if isOrdered this._id}}
+        <div class="row">
+          <div class="col-md-4">
+          {{{getMeasurements this._id}}}
+          </div>
+          <div class="col-md-4">
+          {{{getStyleChoices this._id}}}
+        </div>
+        </div>
+        {{/if}}
       {{/each}}
     </tbody>
   </table>
