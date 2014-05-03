@@ -14,4 +14,4 @@ accounts-ui-bootstrap-3
 jquery
 email
 collectionFS
-cfs-filesystem
+cfs-gridfs
