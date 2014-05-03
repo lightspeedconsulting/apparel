@@ -69,13 +69,15 @@ Template.orders.events({
 
 });
 Template.orders.activeOrder = function() {
-  return Orders.find();
+  var ret = Session.get('currentCustomer') ? Orders.find({customerId: Session.get('currentCustomer')}) : Orders.find();
+console.log(ret);
+  return ret
 };
 
 Template.orders.helpers({
   isOrdered: function(orderId) {
     orderIds = Session.get('expandedOrderIds');
-    if(orderId in orderIds) {
+    if(!_.isUndefined(orderIds) && orderId in orderIds) {
       return true;
     }
     return false;
