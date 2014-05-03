@@ -17,7 +17,7 @@ Template.measurements.events({
       measurementValue = input.val();
       measurements[measurementName] = measurementValue;
     });
-
+ 
     attributes.measurements = measurements;
 
     Meteor.call('addMeasurements',attributes, 
