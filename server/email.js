@@ -26,15 +26,12 @@ measurementsTable = function(customerMeasurements) {
 };
 
 styleChoicesTable = function(orderIdArr) {
-  console.log(orderIdArr);
   orderTable = '';
   _.each(orderIdArr, function(value, key, list) {
     styleChoiceHash = getStyleChoices(value);
     orderTable =  orderTable + '<hr>' + openTable() +  
       orderHeader(value) +
       buildStyleChoiceTable(styleChoiceHash) + closeTable();
-      console.log(value);
-      console.log(orderTable);
   });
   return orderTable;
 };

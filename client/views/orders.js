@@ -93,13 +93,11 @@ Template.orders.helpers({
   getStyleChoices: function(orderId) {
     var html = "<table class='table table-hover'><tr class='info'><th>Style Category</th><th>Option</th></tr>";
     var order = Orders.findOne(orderId);
-    console.log(order.styleChoices);
     _.each(order.styleChoices, function(value, key) {
       html += '<tr><td>' + key + '</td><td>' + value + 
       '</td></tr>';
     });
     html += '</table>';
-    console.log(html);
     return html;
    }
 });
