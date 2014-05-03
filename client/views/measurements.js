@@ -17,6 +17,7 @@ Template.measurements.events({
       measurementValue = input.val();
       measurements[measurementName] = measurementValue;
     });
+
     attributes.measurements = measurements;
 
     Meteor.call('addMeasurements',attributes, 
@@ -25,8 +26,6 @@ Template.measurements.events({
           throwError(error.reason, "alert-danger");
           Router.go('measurements');
         }
-        //TODO: Do we want to flash a message here like "success"
-        //or "Customer [name] had X measurements added?
         Router.go('landing');
         throwError("Measurements Submitted", "alert-success");
     });

@@ -70,7 +70,7 @@ Template.orders.events({
 });
 Template.orders.activeOrder = function() {
   var ret = Session.get('currentCustomer') ? Orders.find({customerId: Session.get('currentCustomer')}) : Orders.find();
-console.log(ret);
+
   return ret
 };
 
