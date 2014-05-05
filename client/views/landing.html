@@ -1,20 +1,36 @@
 <template name="landing">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="input-group">
+        <span class="input-group-btn">
+          <button class="btn btn-default btn-large" id="addCustomer">
+            Add New Customer</button>
+        </span>
+        <input type='text' class="form-control" placeholder='Customer Name' id='customerSearch'/><br>
+      </div>
+    </div>
+  </div>
+  <div class='text-center row'>
+    {{> results}}
+  </div>
   <div class="col-sm-6 col-sm-offset-3">
       <div class="row text-center">
         <p>
-        <a href="measurements" class="btn-lg btn-default btn-block">Measurements</a>
+          <a href="measurements" class="btn-lg btn-default btn-block">Measurements</a>
+        </p>
+      </div>
+      <div class="row text-center">
+        <p>
+        <a href="itemMenu" class="btn-lg btn-default btn-block">New Item</a>
       </p>
       </div>
       <div class="row text-center">
         <p>
-        <a href="shopping" class="btn-lg btn-default btn-block">Design</a>
+        <a href="orders" class="btn-lg btn-default btn-block">Review/Send Order</a>
         </p>
       </div>
       <div class="row text-center">
-        <a href="takePicture" class="btn-lg btn-default btn-block">Take Test Picture</a>
-      </div>
-      <div class="row text-center">
-        <a href="orders" class="btn-lg btn-default btn-block">Orders</a>
+        <a href="#" class="btn-lg btn-default btn-block">Upload New Content</a>
       </div>
   </div>
 </template>
