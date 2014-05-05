@@ -15,9 +15,11 @@ Template.measurements.events({
       var input = $(this);
       measurementName = input.attr('placeholder');
       measurementValue = input.val();
-      measurements[measurementName] = measurementValue;
+      if(measurementValue !== '') {
+        measurements[measurementName] = measurementValue;
+      }
     });
- 
+
     attributes.measurements = measurements;
 
     Meteor.call('addMeasurements',attributes, 
