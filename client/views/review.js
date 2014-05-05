@@ -1,6 +1,6 @@
 Template.review.emailText = function() {
   var email = Emails.findOne(Session.get('emailId'));
-  return email.html;
+  return email.safeHtml;
 };
 
 Template.review.events({

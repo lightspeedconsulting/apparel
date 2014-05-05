@@ -1,7 +1,7 @@
 Template.layout.currentCustomerName = function() {
   customerId =  Session.get('currentCustomer');
 
-  if(!_.isUndefined(customerId)) {
+  if(!_.isUndefined(customerId) && Customers.findOne({_id: customerId})) {
     return Customers.findOne({_id: customerId}).fullName;
   }
   return '';

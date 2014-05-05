@@ -1,6 +1,5 @@
 Customers = new Meteor.Collection('customers');
 Forms = new Meteor.Collection('forms');
-StyleChoices = new Meteor.Collection('styleChoices');
 Orders = new Meteor.Collection('orders');
 Emails = new Meteor.Collection('emails');
 Images = new FS.Collection("images", {
@@ -23,3 +22,30 @@ Images.allow({
     return true;
   }
 });
+StyleChoices = new Meteor.Collection('styleChoices', {
+  schema: {
+    caption: {
+      type: String,
+      label: "Caption",
+      max: 200
+    },
+    path: {
+      type: String,
+      label: "Path to Image",
+      max: 200
+    },
+    clothingType: {
+      type: String,
+      label: "Type of Clothing",
+      max: 200
+    },
+    grouping: {
+      type: String,
+      label: "Grouping for a style choice like cuffs or columns",
+      max: 200
+    }
+  }
+});
+
+
+

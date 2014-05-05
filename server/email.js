@@ -3,12 +3,24 @@ buildEmail = function(to, from, customerId, orderIdArr) {
 
   var htmlText = '';
   htmlText = htmlText.concat(
-    //openBody(),
+    openBody(),
+    customerImages(customerId),
     openTable(),
     measurementsTable(customerMeasurements),
     closeTable(),
-    styleChoicesTable(orderIdArr)
-    //,closeBody()
+    styleChoicesTable(orderIdArr),
+    closeBody()
+    );
+
+  var safeHtmlText = '';
+  safeHtmlText = safeHtmlText.concat(
+    openBody(),
+    safeCustomerImages(customerId),
+    openTable(),
+    measurementsTable(customerMeasurements),
+    closeTable(),
+    safeStyleChoicesTable(orderIdArr),
+    closeBody()
     );
 
   var emailObject =
@@ -16,10 +28,29 @@ buildEmail = function(to, from, customerId, orderIdArr) {
     to: to,
     from: from,
     subject: 'Email Subject',
-    html: htmlText
+    html: htmlText,
+    safeHtml: safeHtmlText
   };
   return Emails.insert(emailObject);
 };
+
+customerImages = function(customerId) {
+  var frontSrc = getCustomerImage(customerId,'Front').url({auth: false})
+  var backSrc = getCustomerImage(customerId,'Back').url({auth: false})
+  var sideSrc = getCustomerImage(customerId,'Side').url({auth: false})
+  return styleChoiceImageTag(frontSrc)
+    + styleChoiceImageTag(backSrc)
+    + styleChoiceImageTag(sideSrc)
+}
+
+safeCustomerImages = function(customerId) {
+  var frontSrc = getCustomerImage(customerId,'Front').url({auth: false})
+  var backSrc = getCustomerImage(customerId,'Back').url({auth: false})
+  var sideSrc = getCustomerImage(customerId,'Side').url({auth: false})
+  return safeStyleChoiceImageTag(frontSrc)
+    + safeStyleChoiceImageTag(backSrc)
+    + safeStyleChoiceImageTag(sideSrc)
+}
 
 measurementsTable = function(customerMeasurements) {
   return buildTable(customerMeasurements);
@@ -29,9 +60,20 @@ styleChoicesTable = function(orderIdArr) {
   orderTable = '';
   _.each(orderIdArr, function(value, key, list) {
     styleChoiceHash = getStyleChoices(value);
-    orderTable =  orderTable + '<hr>' + openTable() +  
+    orderTable =  orderTable + '<hr>' + openTable() +
       orderHeader(value) +
       buildStyleChoiceTable(styleChoiceHash) + closeTable();
+  });
+  return orderTable;
+};
+
+safeStyleChoicesTable = function(orderIdArr) {
+  orderTable = '';
+  _.each(orderIdArr, function(value, key, list) {
+    styleChoiceHash = getStyleChoices(value);
+    orderTable =  orderTable + '<hr>' + openTable() +
+      orderHeader(value) +
+      safeBuildStyleChoiceTable(styleChoiceHash) + closeTable();
   });
   return orderTable;
 };
@@ -41,6 +83,15 @@ buildStyleChoiceTable = function(tableHash) {
   _.each(tableHash, function(value, key, list) {
     table = table +
       fullTableRow(key, value, getStyleChoiceImage(value) );
+  });
+  return table;
+};
+
+safeBuildStyleChoiceTable = function(tableHash) {
+  table = '';
+  _.each(tableHash, function(value, key, list) {
+    table = table +
+      safeFullTableRow(key, value, getStyleChoiceImage(value) );
   });
   return table;
 };
@@ -79,6 +130,30 @@ fullTableRow = function(key, value, image) {
   return mtr;
 };
 
+safeFullTableRow = function(key, value, image) {
+  var mtr = '';
+  mtr = mtr.concat(
+    opentr(),
+    opentd(),key,closetd(),
+    opentd(),value,closetd());
+  if(image) {
+    mtr = mtr.concat(
+      opentd(),safeStyleChoiceImageTag(image),closetd()
+    );
+  }
+  mtr = mtr.concat(
+    closetr()
+    );
+  return mtr;
+};
+
+getCustomerImage = function (customerId, view) {
+  return Images.findOne({"metadata.view": view,
+    "metadata.customerId": customerId},
+    {sort: {updatedAt: -1}, limit: 1});
+}
+
+
 openBody = function() {return '<body>';};
 closeBody = function() {return '</body>';};
 openTable = function() {return '<table>';};
@@ -89,5 +164,6 @@ opentr = function() {return '<tr>';};
 closetr = function() {return '</tr>';};
 opentd = function() {return '<td>';};
 closetd = function() {return '</td>';};
-//styleChoiceImageTag = function(image) {return '<img src="public/styleChoices/' + image + '">'}
-styleChoiceImageTag = function(image) {return '<img src="styleChoices/' + image + '">';};
+
+styleChoiceImageTag = function(image) {return '<img src="' + process.env.ROOT_URL + image + '"><br>';};
+safeStyleChoiceImageTag = function(image) {return '<img src="' + image + '"><br>';};
