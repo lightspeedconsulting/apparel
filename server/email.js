@@ -38,18 +38,18 @@ customerImages = function(customerId) {
   var frontSrc = getCustomerImage(customerId,'Front').url({auth: false})
   var backSrc = getCustomerImage(customerId,'Back').url({auth: false})
   var sideSrc = getCustomerImage(customerId,'Side').url({auth: false})
-  return styleChoiceImageTag(frontSrc)
-    + styleChoiceImageTag(backSrc)
-    + styleChoiceImageTag(sideSrc)
+  return imageTag(frontSrc)
+    + imageTag(backSrc)
+    + imageTag(sideSrc)
 }
 
 safeCustomerImages = function(customerId) {
   var frontSrc = getCustomerImage(customerId,'Front').url({auth: false})
   var backSrc = getCustomerImage(customerId,'Back').url({auth: false})
   var sideSrc = getCustomerImage(customerId,'Side').url({auth: false})
-  return safeStyleChoiceImageTag(frontSrc)
-    + safeStyleChoiceImageTag(backSrc)
-    + safeStyleChoiceImageTag(sideSrc)
+  return safeImageTag(frontSrc)
+    + safeImageTag(backSrc)
+    + safeImageTag(sideSrc)
 }
 
 measurementsTable = function(customerMeasurements) {
@@ -165,5 +165,8 @@ closetr = function() {return '</tr>';};
 opentd = function() {return '<td>';};
 closetd = function() {return '</td>';};
 
-styleChoiceImageTag = function(image) {return '<img src="' + process.env.ROOT_URL + image + '"><br>';};
-safeStyleChoiceImageTag = function(image) {return '<img src="' + image + '"><br>';};
+styleChoiceImageTag = function(image) {return '<img src="' + process.env.ROOT_URL + 'styleChoices/' + image + '"><br>';};
+safeStyleChoiceImageTag = function(image) {return '<img src="' + 'styleChoices/' + image + '"><br>';};
+
+imageTag = function(image) {return '<img src="' + process.env.ROOT_URL + image + '"><br>';};
+safeImageTag = function(image) {return '<img src="' + image + '"><br>';};
