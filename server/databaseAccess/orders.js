@@ -13,10 +13,10 @@ addOrder = function(customerId) {
   });
 };
 
-updateOrder = function(orderId, styleChoices) {
+updateOrder = function(orderId, styleChoices, itemType) {
 
   return Orders.update(orderId, {$set: {
-    itemType: styleChoices.clothingType,
+    itemType: itemType,
     styleChoices: styleChoices
     }
   });

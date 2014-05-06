@@ -43,9 +43,7 @@ Template.styleChoices.events = ({
 
   'click #submitChoices': function(e) {
     e.preventDefault();
-    sc = Session.get('styleChoiceHash');
-    sc.clothingType = this.type;
-    Session.set('styleChoiceHash', sc);
+    Session.set('clothingType', this.type);
     Router.go('itemMenu');
   }
 });

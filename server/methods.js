@@ -30,7 +30,7 @@ Meteor.methods({
     return addOrder(customerId);
    },
    updateCurrentOrder: function(attributes) {
-    return updateOrder(attributes.orderId,attributes.styleChoices);
+    return updateOrder(attributes.orderId,attributes.styleChoices, attributes.itemType);
    },
    removeImage: function(imageId) {
     return removeSingleImage(imageId);

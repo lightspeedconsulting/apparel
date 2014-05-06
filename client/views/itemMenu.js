@@ -7,6 +7,7 @@ Template.itemMenu.events({
     attributes = {
       orderId: orderId,
       styleChoices: sc,
+      itemType: Session.get('clothingType'),
     };
 
     Meteor.call('updateCurrentOrder', attributes, function(error, attributes) {

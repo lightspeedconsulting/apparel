@@ -68,7 +68,7 @@ Template.takePicture.events({
   'click #reviewOrder': function(e) {
     e.preventDefault();
 
-    Router.go('itemMenu');
+    Router.go('landing');
     throwError("Photos successfully submitted", "alert-success");
   },
 });
