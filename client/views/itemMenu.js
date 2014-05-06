@@ -2,15 +2,14 @@ Template.itemMenu.events({
   'click #addItem': function(e) {
     e.preventDefault();
     sc = Session.get('styleChoiceHash');
-    cId = Session.get('currentCustomer');
+    orderId = Session.get('itemId');
 
     attributes = {
-      customerId: cId,
+      orderId: orderId,
       styleChoices: sc,
-      itemType: this.type
     };
 
-    Meteor.call('createNewOrder', attributes, function(error, attributes) {
+    Meteor.call('updateCurrentOrder', attributes, function(error, attributes) {
       if(error) {
         throwError(error.reason, "alert-danger");
         Router.go('itemMenu/' + this.type);

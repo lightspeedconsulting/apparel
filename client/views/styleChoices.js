@@ -1,7 +1,6 @@
 Session.set('currentStyleChoice', 'cuffs');
 Session.set('styleChoiceHash', {});
 
-
 Template.styleChoices.styleChoiceGrouping = function () {
   sci = StyleChoices.find({clothingType: this.type});
 
@@ -44,7 +43,9 @@ Template.styleChoices.events = ({
 
   'click #submitChoices': function(e) {
     e.preventDefault();
-
+    sc = Session.get('styleChoiceHash');
+    sc.clothingType = this.type;
+    Session.set('styleChoiceHash', sc);
     Router.go('itemMenu');
   }
 });

@@ -26,8 +26,11 @@ Meteor.methods({
     return buildEmail(attributes.targetEmail, attributes.fromEmail, attributes.customerId, attributes.toBeOrderedArray);
 
   },
-   createNewOrder: function(attributes) {
-    return addOrder(attributes.customerId, attributes.styleChoices, attributes.itemType);
+   createNewOrder: function(customerId) {
+    return addOrder(customerId);
+   },
+   updateCurrentOrder: function(attributes) {
+    return updateOrder(attributes.orderId,attributes.styleChoices);
    },
    removeImage: function(imageId) {
     return removeSingleImage(imageId);

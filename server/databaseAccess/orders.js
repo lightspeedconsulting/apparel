@@ -1,19 +1,26 @@
-addOrder = function(customerId, styleChoices, itemType) {
+addOrder = function(customerId) {
   currentDate = new Date().toDateString();
-  customer = Customers.findOne({_id: customerId}, {measurements: 1, fullName: 1});
+  customer = Customers.findOne(customerId);
+
   measurementsHash = customer.measurements;
   customerName = customer.fullName;
 
   return Orders.insert({
     customerId: customerId,
     customerName: customerName,
-    itemType: itemType,
     measurements: measurementsHash,
-    styleChoices: styleChoices,
     orderDate: currentDate
   });
 };
 
+updateOrder = function(orderId, styleChoices) {
+
+  return Orders.update(orderId, {$set: {
+    itemType: styleChoices.clothingType,
+    styleChoices: styleChoices
+    }
+  });
+};
 getStyleChoices = function(orderId) {
   return Orders.findOne({_id: orderId}).styleChoices;
 };

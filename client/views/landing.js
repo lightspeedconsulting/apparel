@@ -21,6 +21,20 @@ Template.landing.events({
     e.preventDefault();
     prevValue = Session.get('customerButtonClicked');
     Session.set("customerButtonClicked",!prevValue);
+  },
+  'click #newItem': function(e) {
+    e.preventDefault();
+
+    cId = Session.get('currentCustomer');
+
+    Meteor.call('createNewOrder', cId, function(error, orderId) {
+      if(error) {
+        throwError(error.reason, "alert-danger");
+        Router.go('landing');
+      }
+      Session.set('itemId', orderId);
+      Router.go('itemMenu');
+    });
   }
 });
 
