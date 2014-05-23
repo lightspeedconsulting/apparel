@@ -1,0 +1,19 @@
+<template name="addNotes">
+  <div class="text-center">
+    <!-- TODO: Below should be forms -->
+    <h1> Current Notes on Customer</h1>
+    {{#if customerNotes}}
+      {{customerNotes}}
+      <br>
+      <button type="button" class="btn btn-large btn-default" id="deleteNotes">
+        Delete Notes 
+      </button>
+    {{else}}
+      <textarea class="form-control" rows="3" id="customerNotes"></textarea>
+      <br>
+      <button type="button" class="btn btn-large btn-default" id="addNotes">
+        Add Notes
+      </button>
+    {{/if}}   
+  </div>
+</template>

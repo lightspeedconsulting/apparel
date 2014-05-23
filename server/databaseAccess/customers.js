@@ -11,14 +11,19 @@ addMeasurementsToCustomer = function(customerId, measurementsHash) {
   newMeasurements = measurementsHash;
 //console.log(currentMeasurements)
   combinedMeasurements = _.extend({}, currentMeasurements, newMeasurements);
-console.log(currentMeasurements)
-console.log(newMeasurements)
-console.log(combinedMeasurements)
   //TODO: should we always return the updated customer document?
   //Because at the moment we're returning the # of docs updated
   return Customers.update(customerId,
     {$set: { measurements: combinedMeasurements } } );
 };
 getCustomerMeasurements = function(customerId) {
-  return Customers.findOne({_id: customerId}, {measurements: 1}).measurements
-}
+  return Customers.findOne({_id: customerId}, {measurements: 1}).measurements;
+};
+
+addNotesToCustomer = function(customerId, notes) {
+  return Customers.update(customerId, {$set: { notes: notes } } );
+};
+
+deleteNotesFromCustomer = function(customerId) {
+   return Customers.update(customerId, {$set: { notes: null } } );
+};

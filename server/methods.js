@@ -7,6 +7,18 @@ Meteor.methods({
     customerId = attributes.customerId;
     addMeasurementsToCustomer(customerId, attributes.measurements);
   },
+  addNotes: function(attributes) {
+    console.log(attributes);
+    check(attributes, {
+      customerId: String,
+      notes: String
+    });
+    addNotesToCustomer(attributes.customerId, attributes.notes);
+  },
+  deleteNotes: function(customerId) {
+    check(customerId, String);
+    deleteNotesFromCustomer(customerId);
+  },
 
   sendEmail: function(emailId) {
     // TODO: redo the check...
