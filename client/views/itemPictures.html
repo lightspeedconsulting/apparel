@@ -1,13 +1,13 @@
 <template name="itemPictures">
   <div class="text-center">
-    <h3><small>Please take front picture</small></h3>
-    {{#each images "Front"}}
+    <h3><small>Add a picture to this item</small></h3>
+    {{#each images}}
       <img src="{{url}}" alt="an Image" width="400" height="400">
     {{/each}}
     <form role="form">
       <div class="form-group">
-        <input  id="itemPicture" class="center-block" type="file" 
-        accept="image/*" capture="camera"> 
+        <input id="itemPicture" class="center-block" type="file"
+        accept="image/*" capture="camera">
       </div>
     </form>
     <button type="button" class="btn btn-large btn-danger" id="removeItem">
