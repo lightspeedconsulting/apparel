@@ -8,7 +8,7 @@ function insertItemFiles(e, view) {
   FS.Utility.eachFile(e, function(file) {
     var newFile = new FS.File(file);
     newFile.metadata = {customerId: Session.get('currentCustomer'),
-      view: Session.get('itemId')};
+      view: currentItemId()};
     Images.insert(newFile, function(error, fileObj) {
       if(error) {
         throwError(error.reason);
@@ -35,34 +35,33 @@ function removeImages(view) {
     }
   });
 }
+
+function currentItemId() {
+  return Session.get('itemId');
+}
+
 Template.itemPictures.events({
   'change #itemPicture': function(e) {
     e.preventDefault();
 
     insertItemFiles(e, Session.get('currentCustomer'));
   },
-  // 'click #removeItem': function(e) {
-  //   e.preventDefault();
+  'click #removeItem': function(e) {
+    e.preventDefault();
 
-  //   removeImages("Front");
-  // },
-  // 'click #doneItemPictures': function(e) {
-  //   e.preventDefault();
+    removeImages(currentItemId());
+  },
+  'click #doneItemPictures': function(e) {
+    e.preventDefault();
 
-  //   Router.go('itemMenu');
-  //   throwError("Photos successfully added to item", "alert-success");
-  // },
-  // 'click #addAnotherPicture': function(e) {
-  //   e.preventDefault();
-
-  //   Router.go('itemPictures');
-  //   throwError("Photo Added", "alert-success");
-  // },
+    Router.go('itemMenu');
+    throwError("Photos successfully added to item", "alert-success");
+  },
 });
 
 Template.itemPictures.helpers({
   images: function() {
-    return Images.find({"metadata.view": Session.get('itemId'),
+    return Images.find({"metadata.view": currentItemId(),
       "metadata.customerId": Session.get('currentCustomer')},
       {sort: {updatedAt: -1}});
   }
