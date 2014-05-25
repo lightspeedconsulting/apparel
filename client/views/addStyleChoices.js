@@ -1,9 +1,16 @@
+var attributes;
+
 //TODO: both of the below 2 functions are duplicate code from takePicture.js
 //and should be refactored to one function accessible everywhere client side
 function insertFiles(files, e, view) {
     FS.Utility.eachFile(e, function(file) {
       var newFile = new FS.File(file);
-      newFile.metadata = {view: view};
+      newFile.metadata = {
+        view: view,
+        clothingType: attributes.clothingType,
+        caption: attributes.caption,
+        grouping: attributes.grouping
+      };
       Images.insert(newFile, function(error, fileObj) {
         if(error) {
           throwError(error.reason);
@@ -34,15 +41,19 @@ Template.addStyleChoices.rendered = function() {
  
   Session.set('isOtherSelected', false);
   Session.set('exposeImageInformation', false);
-  
+  Session.set('styleInfoSubmitted', false);
   //TODO: repeated code from StyleChoices.js, should refator it
-  sci = StyleChoices.find({clothingType: this.data.type});
+  //Note: except that here it's this.data.type instead of this.type
+  sci = Images.find({'metadata.clothingType': this.data.type});
+
   styleChoiceGroupArray = [];
+
   sci.forEach(function(sc) {
-    styleChoiceGroupArray.push(sc.grouping);
+    styleChoiceGroupArray.push(sc.metadata.grouping);
   });
 
   styleChoiceGroupArray = _.uniq(styleChoiceGroupArray);
+  console.log(styleChoiceGroupArray);
 
   $('#styleChoiceGrouping').append($("<option></option>")
     .attr("value", '').text('-'));
@@ -61,6 +72,9 @@ Template.addStyleChoices.helpers({
   },
   'exposeOtherInformation': function() {
     return Session.get('exposeImageInformation');
+  },
+  'styleInfoSubmitted': function() {
+    return Session.get('styleInfoSubmitted');
   }
 });
 
@@ -68,6 +82,7 @@ Template.addStyleChoices.events({
   'change #styleChoicePicture': function(e) {
     e.preventDefault(); 
     
+    console.log(attributes);
     var files = e.target.files; 
     insertFiles(files, e, "StyleChoice");
   }, 
@@ -82,14 +97,17 @@ Template.addStyleChoices.events({
     if(selectValue === 'Other') {
       Session.set('isOtherSelected', true);
     } else { 
+      Session.set('isOtherSelected', false);
       Session.set('exposeImageInformation', true);
     }
   },
   'keyup #newStyleGrouping': function(e) {
       Session.set('exposeImageInformation', true);
   },
-  'click #submit': function(e) {
+  'click #done': function(e) {
     e.preventDefault();
+
+    Session.set('styleInfoSubmitted', true);
 
     var grouping = '';
     if(Session.get('isOtherSelected')) {
@@ -97,12 +115,12 @@ Template.addStyleChoices.events({
     } else {
       grouping = $('#styleChoiceGrouping').val();
     }
-    console.log(this);
-    var attributes = {
+    attributes = {
       clothingType: this.type,
       caption: $('#caption').val(),
       grouping: grouping
       
     };
+    Session.set('exposeImageInformation', false);
   }
 });

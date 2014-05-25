@@ -1,5 +1,5 @@
 <template name="addStyleChoices"> 
-  <hr>
+  <br>
   <h3><small>Add New Style Choice</small></h3>
   <div class="row">
     <div class="col-md-4 col-md-offset-2">
@@ -20,14 +20,17 @@
     </div>
     <br>
     <div class="row">
-      <form role="form">
-        <div class="form-group">
-          <input  id="styleChoicePicture" class="center-block" type="file" accept="image/*" capture="camera"> 
-        </div>
-      </form>
-      <button type="button" class="btn btn-danger" id="removeImage">Remove</button>
+      <br>
+      <button type="button" class="btn btn-success" id="done">Done</button>
     </div>
+  {{/if}}
+  {{#if styleInfoSubmitted}}
     <br>
-    <button type="button" class="btn btn-success" id="submit">Submit</button>
+    <form role="form">
+      <div class="form-group">
+        <input  id="styleChoicePicture" class="center-block" type="file" accept="image/*" capture="camera"> 
+      </div>
+    </form>
+    <button type="button" class="btn btn-danger" id="removeImage">Remove</button>
   {{/if}}
 </template>

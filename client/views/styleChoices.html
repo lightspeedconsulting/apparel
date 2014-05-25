@@ -9,12 +9,12 @@
   </div>
   <div class='col-xs-9 col-md-8'>
     {{#each styleChoice}}
-      <a class='col-sm-3 col-xs-4 thumbnail' id="{{caption}}">
-        <img src="{{path}}" alt="{{caption}}">
-        <div class='text-center'>
-          <small>{{caption}}</small>
-        </div>
-      </a>
+      <div class="col-md-3">
+        <img src="{{url}}" alt="an Image" id={{metadata.caption}} class="img-responsive thumbnail">
+      <div class='text-center'>
+        <small>{{metadata.caption}}</small>
+      </div>
+    </div>
     {{/each}}
   </div>
   <div class='col-xs-4 col-md-2 text-center'>
@@ -26,6 +26,7 @@
     {{/each}}
   </div>
   <div class='col-md-8 col-md-offset-2 text-center'>
+  <hr>
     <button type="button" class="btn btn-lg btn-default" id="addStyleChoice">
       Add Style Choice
     </button>

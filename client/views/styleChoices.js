@@ -11,12 +11,12 @@ Template.styleChoices.helpers({
   }
 });
 Template.styleChoices.styleChoiceGrouping = function () {
-  sci = StyleChoices.find({clothingType: this.type});
+  sci = Images.find({'metadata.clothingType': this.type});
 
   styleChoiceGroupArray = [];
 
   sci.forEach(function(sc) {
-    styleChoiceGroupArray.push(sc.grouping);
+    styleChoiceGroupArray.push(sc.metadata.grouping);
   });
 
   styleChoiceGroupArray = _.uniq(styleChoiceGroupArray);
@@ -25,7 +25,8 @@ Template.styleChoices.styleChoiceGrouping = function () {
 };
 
 Template.styleChoices.styleChoice = function () {
-  return StyleChoices.find({clothingType: this.type, grouping: Session.get('currentStyleChoice')});
+  return Images.find({'metadata.clothingType': this.type, 
+    'metadata.grouping': Session.get('currentStyleChoice')});
 };
 
 Template.styleChoices.selectedChoice = function () {
@@ -38,9 +39,9 @@ Template.styleChoices.events = ({
     Session.set('currentStyleChoice', e.currentTarget.id);
   },
 
-  'click a.thumbnail': function(e) {
+  'click img.thumbnail': function(e) {
     e.preventDefault();
-    $("a.thumbnail").removeClass('active');
+    $("img.thumbnail").removeClass('active');
     var current = e.currentTarget.id;
     $("#" + current).addClass('active');
 
