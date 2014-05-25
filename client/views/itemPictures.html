@@ -1,27 +1,25 @@
 <template name="itemPictures">
   <div class="text-center">
-    <h3><small>Please take front picture</small></h3>
-    {{#each images "Front"}}
+    <h3><small>Add a picture to this item</small></h3>
+    {{#each images}}
+    <div class="row">
       <img src="{{url}}" alt="an Image" width="400" height="400">
+    </div>
     {{/each}}
     <form role="form">
       <div class="form-group">
-        <input  id="itemPicture" class="center-block" type="file" 
-        accept="image/*" capture="camera"> 
+        <input id="itemPicture" class="center-block" type="file"
+        accept="image/*" capture="camera" placeholder="Add Image">
+        <span>Add Another Image</span>
       </div>
     </form>
     <button type="button" class="btn btn-large btn-danger" id="removeItem">
-      Remove
+      Remove Last Image
     </button>
   </div>
   <hr>
   <div class="row text-center">
-    <div class="col-md-3 col-md-offset-3">
-      <button class="btn btn-large btn-block btn-primary" id="addAnotherPicture">
-        Add Another Picture
-      </button>
-    </div>
-    <div class="col-md-3">
+    <div class="col-md-6 col-md-offset-3">
       <button class="btn btn-large btn-block btn-success" id="doneItemPictures">
         Done
       </button>

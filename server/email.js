@@ -1,5 +1,6 @@
 buildEmail = function(to, from, customerId, orderIdArr) {
   customerMeasurements = getCustomerMeasurements(customerId);
+  var customerId = customerId;
 
   var htmlText = '';
   htmlText = htmlText.concat(
@@ -8,7 +9,7 @@ buildEmail = function(to, from, customerId, orderIdArr) {
     openTable(),
     measurementsTable(customerMeasurements),
     closeTable(),
-    styleChoicesTable(orderIdArr),
+    styleChoicesTable(orderIdArr, customerId),
     closeBody()
     );
 
@@ -19,7 +20,7 @@ buildEmail = function(to, from, customerId, orderIdArr) {
     openTable(),
     measurementsTable(customerMeasurements),
     closeTable(),
-    safeStyleChoicesTable(orderIdArr),
+    safeStyleChoicesTable(orderIdArr, customerId),
     closeBody()
     );
 
@@ -35,41 +36,47 @@ buildEmail = function(to, from, customerId, orderIdArr) {
 };
 
 customerImages = function(customerId) {
-  var frontSrc = getCustomerImage(customerId,'Front').url({auth: false});
-  var backSrc = getCustomerImage(customerId,'Back').url({auth: false});
-  var sideSrc = getCustomerImage(customerId,'Side').url({auth: false});
-  return imageTag(frontSrc) + imageTag(backSrc) + imageTag(sideSrc);
-};
+  var frontSrc = getCustomerImages(customerId,'Front')[0].url({auth: false})
+  var backSrc = getCustomerImages(customerId,'Back')[0].url({auth: false})
+  var sideSrc = getCustomerImages(customerId,'Side')[0].url({auth: false})
+  return imageTag(frontSrc)
+    + imageTag(backSrc)
+    + imageTag(sideSrc)
+}
 
 safeCustomerImages = function(customerId) {
-  var frontSrc = getCustomerImage(customerId,'Front').url({auth: false});
-  var backSrc = getCustomerImage(customerId,'Back').url({auth: false});
-  var sideSrc = getCustomerImage(customerId,'Side').url({auth: false});
-  return safeImageTag(frontSrc) + safeImageTag(backSrc) + safeImageTag(sideSrc);
-};
+  var frontSrc = getCustomerImages(customerId,'Front')[0].url({auth: false})
+  var backSrc = getCustomerImages(customerId,'Back')[0].url({auth: false})
+  var sideSrc = getCustomerImages(customerId,'Side')[0].url({auth: false})
+  return safeImageTag(frontSrc)
+    + safeImageTag(backSrc)
+    + safeImageTag(sideSrc)
+}
 
 measurementsTable = function(customerMeasurements) {
   return buildTable(customerMeasurements);
 };
 
-styleChoicesTable = function(orderIdArr) {
+styleChoicesTable = function(orderIdArr, customerId) {
   orderTable = '';
   _.each(orderIdArr, function(value, key, list) {
     styleChoiceHash = getStyleChoices(value);
     orderTable =  orderTable + '<hr>' + openTable() +
       orderHeader(value) +
-      buildStyleChoiceTable(styleChoiceHash) + closeTable();
+      buildStyleChoiceTable(styleChoiceHash) + closeTable() +
+      orderImages(value, customerId);
   });
   return orderTable;
 };
 
-safeStyleChoicesTable = function(orderIdArr) {
+safeStyleChoicesTable = function(orderIdArr, customerId) {
   orderTable = '';
   _.each(orderIdArr, function(value, key, list) {
     styleChoiceHash = getStyleChoices(value);
     orderTable =  orderTable + '<hr>' + openTable() +
       orderHeader(value) +
-      safeBuildStyleChoiceTable(styleChoiceHash) + closeTable();
+      safeBuildStyleChoiceTable(styleChoiceHash) + closeTable() +
+      safeOrderImages(value, customerId);
   });
   return orderTable;
 };
@@ -143,11 +150,33 @@ safeFullTableRow = function(key, value, image) {
   return mtr;
 };
 
-getCustomerImage = function (customerId, view) {
-  return Images.findOne({"metadata.view": view,
+orderImages = function(itemId, customerId) {
+  images = getCustomerImages(customerId, itemId);
+  imageTags = '';
+
+  _.each(images, function(image) {
+    imageTags = imageTags + imageTag(image.url({auth: false}))
+  });
+
+  return imageTags;
+}
+
+safeOrderImages = function(itemId, customerId) {
+  images = getCustomerImages(customerId, itemId);
+  imageTags = '';
+
+  _.each(images, function(image) {
+    imageTags = imageTags + safeImageTag(image.url({auth: false}))
+  });
+
+  return imageTags;
+}
+
+getCustomerImages = function (customerId, view) {
+  return Images.find({"metadata.view": view,
     "metadata.customerId": customerId},
-    {sort: {updatedAt: -1}, limit: 1});
-};
+    {sort: {updatedAt: -1}}).fetch();
+}
 
 
 openBody = function() {return '<body>';};
