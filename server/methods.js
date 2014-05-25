@@ -20,7 +20,7 @@ Meteor.methods({
     deleteNotesFromCustomer(customerId);
   },
 
-  sendEmail: function(emailId) {
+  sendEmail: function(attributes) {
     // TODO: redo the check...
     //check([to, from, subject, text], [String]);
 
@@ -31,7 +31,8 @@ Meteor.methods({
     //complete
 
 
-    var email = Emails.findOne(emailId);
+    Emails.update(attributes.emailId, {$set: {orderNotes: attributes.orderNotes}});
+    var email = Emails.findOne(attributes.emailId);
     Email.send(email);
    },
    buildEmailForReview: function(attributes) {

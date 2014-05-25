@@ -8,8 +8,13 @@ Template.review.events({
     e.preventDefault();
     //Grab user input
 
+    var attributes = {
+      emailId: Session.get('emailId'),
+      orderNotes: $('#orderNotes').val()
+    };
+
     //the empty string "", undefined, and null are all falsy 
-    Meteor.call('sendEmail', Session.get('emailId'),
+    Meteor.call('sendEmail', attributes,
         function(error) {
           if(error) {
             throwError(error.reason, "alert-danger");

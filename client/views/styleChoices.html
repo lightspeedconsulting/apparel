@@ -25,4 +25,12 @@
     </div>
     {{/each}}
   </div>
+  <div class='col-md-8 col-md-offset-2 text-center'>
+    <button type="button" class="btn btn-lg btn-default" id="addStyleChoice">
+      Add Style Choice
+    </button>
+  {{#if displayAddStyleChoice}}
+    {{> addStyleChoices}}
+  {{/if}}
+  </div>
 </template>

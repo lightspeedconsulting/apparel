@@ -1,6 +1,15 @@
 Session.set('currentStyleChoice', 'cuffs');
 Session.set('styleChoiceHash', {});
 
+Template.styleChoices.rendered = function() {
+  Session.set('displayAddStyleChoice', false);
+};
+
+Template.styleChoices.helpers({
+  'displayAddStyleChoice': function() {
+    return Session.get('displayAddStyleChoice');
+  }
+});
 Template.styleChoices.styleChoiceGrouping = function () {
   sci = StyleChoices.find({clothingType: this.type});
 
@@ -45,6 +54,11 @@ Template.styleChoices.events = ({
     e.preventDefault();
     Session.set('clothingType', this.type);
     Router.go('itemMenu');
+  },
+  'click #addStyleChoice': function(e) {
+    e.preventDefault();
+    
+    Session.set('displayAddStyleChoice', true);
   }
 });
 
