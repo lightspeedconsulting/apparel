@@ -35,22 +35,18 @@ buildEmail = function(to, from, customerId, orderIdArr) {
 };
 
 customerImages = function(customerId) {
-  var frontSrc = getCustomerImage(customerId,'Front').url({auth: false})
-  var backSrc = getCustomerImage(customerId,'Back').url({auth: false})
-  var sideSrc = getCustomerImage(customerId,'Side').url({auth: false})
-  return imageTag(frontSrc)
-    + imageTag(backSrc)
-    + imageTag(sideSrc)
-}
+  var frontSrc = getCustomerImage(customerId,'Front').url({auth: false});
+  var backSrc = getCustomerImage(customerId,'Back').url({auth: false});
+  var sideSrc = getCustomerImage(customerId,'Side').url({auth: false});
+  return imageTag(frontSrc) + imageTag(backSrc) + imageTag(sideSrc);
+};
 
 safeCustomerImages = function(customerId) {
-  var frontSrc = getCustomerImage(customerId,'Front').url({auth: false})
-  var backSrc = getCustomerImage(customerId,'Back').url({auth: false})
-  var sideSrc = getCustomerImage(customerId,'Side').url({auth: false})
-  return safeImageTag(frontSrc)
-    + safeImageTag(backSrc)
-    + safeImageTag(sideSrc)
-}
+  var frontSrc = getCustomerImage(customerId,'Front').url({auth: false});
+  var backSrc = getCustomerImage(customerId,'Back').url({auth: false});
+  var sideSrc = getCustomerImage(customerId,'Side').url({auth: false});
+  return safeImageTag(frontSrc) + safeImageTag(backSrc) + safeImageTag(sideSrc);
+};
 
 measurementsTable = function(customerMeasurements) {
   return buildTable(customerMeasurements);
@@ -151,7 +147,7 @@ getCustomerImage = function (customerId, view) {
   return Images.findOne({"metadata.view": view,
     "metadata.customerId": customerId},
     {sort: {updatedAt: -1}, limit: 1});
-}
+};
 
 
 openBody = function() {return '<body>';};
@@ -168,5 +164,5 @@ closetd = function() {return '</td>';};
 styleChoiceImageTag = function(image) {return '<img src="' + process.env.ROOT_URL + 'styleChoices/' + image + '"><br>';};
 safeStyleChoiceImageTag = function(image) {return '<img src="' + 'styleChoices/' + image + '"><br>';};
 
-imageTag = function(image) {return '<img src="' + process.env.ROOT_URL + image + '"><br>';};
-safeImageTag = function(image) {return '<img src="' + image + '"><br>';};
+imageTag = function(image) {return '<img class="img-responsive" src="' + process.env.ROOT_URL + image + '"><br>';};
+safeImageTag = function(image) {return '<img class="img-responsive" src="' + image + '"><br>';};
