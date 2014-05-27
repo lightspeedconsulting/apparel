@@ -28,8 +28,10 @@ Template.measurements.events({
           throwError(error.reason, "alert-danger");
           Router.go('measurements');
         }
-        Router.go('landing');
-        throwError("Measurements Submitted", "alert-success");
+        else {
+          Router.go('landing');
+          throwError("Measurements Submitted", "alert-success");
+        }
     });
 
   }

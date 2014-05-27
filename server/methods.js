@@ -5,7 +5,18 @@ Meteor.methods({
 
   addMeasurements: function(attributes) {
     customerId = attributes.customerId;
-    addMeasurementsToCustomer(customerId, attributes.measurements);
+
+    currentMeasurements = Customers.findOne(customerId).measurements;
+    newMeasurements = attributes.measurements;
+
+    combinedMeasurements = _.extend({}, currentMeasurements, newMeasurements);
+
+    //Check if we have the right number of measurements, if not throw an error
+    if(_.keys(combinedMeasurements).length !== 22) {
+      throw new Meteor.Error(400, 'Please fill in all the customer measurements')
+    }
+
+    addMeasurementsToCustomer(customerId, combinedMeasurements);
   },
   addNotes: function(attributes) {
     console.log(attributes);
