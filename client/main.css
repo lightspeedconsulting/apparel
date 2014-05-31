@@ -13,3 +13,7 @@
   height: auto;
   width: 400px;
 }
+
+.form-inline {
+  margin-top: 2px;
+}

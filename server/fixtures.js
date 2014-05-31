@@ -3,7 +3,7 @@ String.prototype.capitalize = function() {
 };
 
 
-if (Meteor.isServer) {
+if (Meteor.isServer && process.env.ENV === 'dev') {
   Meteor.startup(function () {
     if(_.isUndefined(Customers.findOne())){
 
@@ -104,13 +104,6 @@ if (Meteor.isServer) {
 
 
       Orders.remove({});
-      Orders.insert({ customerName: 'Tyler', orderDate: '04/09/14', itemType: 'Shirt'});
-      Orders.insert({ customerName: 'Duncan', orderDate: '04/08/14', itemType: 'Shirt'});
-      Orders.insert({ customerName: 'Brendan', orderDate: '04/07/14', itemType: 'Suit'});
-
-      Orders.insert({ customerId: jb, customerName: 'James Bond', orderDate: '04/07/14', itemType: 'Suit'});
-      Orders.insert({ customerId: jb, customerName: 'James Bond', orderDate: '03/07/14', itemType: 'Shirt'});
-      Orders.insert({ customerId: jb, customerName: 'James Bond', orderDate: '02/07/14', itemType: 'Shirt'});
     }
   });
 }
