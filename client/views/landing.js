@@ -17,11 +17,6 @@ Template.landing.rendered = function() {
 };
 
 Template.landing.events({
-  'click #addCustomer': function(e) {
-    e.preventDefault();
-    prevValue = Session.get('customerButtonClicked');
-    Session.set("customerButtonClicked",!prevValue);
-  },
   'click #newItem': function(e) {
     e.preventDefault();
 
