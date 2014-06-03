@@ -2,28 +2,34 @@ String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
+      Customers.remove({});
+      addCustomer('Josh', 'A');
+      addCustomer('Tim', 'B');
+      addCustomer('John', 'Doe');
+      jb = addCustomer('James', 'Bond');
+      addCustomer('Sean', 'Connery');
+      addCustomer('Woody', 'Allen');
+      addCustomer('Brad', 'Pitt');
+      addCustomer('Jonnie', 'Depp');
+      addCustomer('Greg', 'Silverberg');
+      addCustomer('Clark', 'Kent');
+      addCustomer('Bruce', 'Wayne');
+      addCustomer('Bruce', 'Willis');
+      addCustomer('Lil', 'Wayne');
+
 
 if (Meteor.isServer && process.env.ENV === 'dev') {
   Meteor.startup(function () {
     if(_.isUndefined(Customers.findOne())){
 
       Customers.remove({});
-      addCustomer('Tyler', 'Sheffels');
-      addCustomer('Duncan', 'Renfrow');
       addCustomer('Josh', 'A');
       addCustomer('Tim', 'B');
-      addCustomer('TARK', 'MCMAINS');
-      addCustomer('Brendan', 'Nolan');
       addCustomer('John', 'Doe');
-      addCustomer('Jim', 'Raynor');
-      addCustomer('Mike', 'Hunt');
       jb = addCustomer('James', 'Bond');
       addCustomer('Sean', 'Connery');
       addCustomer('Woody', 'Allen');
       addCustomer('Brad', 'Pitt');
-      addCustomer('Jennifer', 'Aniston');
-      addCustomer('Angelina', 'Jolie');
-      addCustomer('Jenna', 'Jameson');
       addCustomer('Jonnie', 'Depp');
       addCustomer('Greg', 'Silverberg');
       addCustomer('Clark', 'Kent');
