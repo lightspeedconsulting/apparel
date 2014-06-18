@@ -1,9 +1,9 @@
 # Apparel
 ## Overview
 This application is designed to support a custom fashion designer. It allows
-a designer to record measurements, pick styles for various clothing items,
+the designer to record measurements, pick styles for various clothing items,
 take photos, and then customize an email to the tailor. This is designed to
-be primarily Ipad friendly, as that was a project requirement.
+be primarily Ipad friendly, as that was a strict project requirement.
 
 ## Installation
 
