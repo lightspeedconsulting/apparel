@@ -1,4 +1,8 @@
 # Apparel
+
+Heroku Dev site: (sometimes unstable)
+http://yaapparel.herokuapp.com/
+
 ## Overview
 This application is designed to support a custom fashion designer. It allows
 the designer to record measurements, pick styles for various clothing items,
