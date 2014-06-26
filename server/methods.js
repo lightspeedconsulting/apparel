@@ -63,6 +63,6 @@ Meteor.methods({
     throw new Meteor.Error(400, 'Item Incomplete');
    },
    removeImage: function(imageId) {
-    return removeSingleImage(imageId);
+     Images.remove(imageId);
    }
 });

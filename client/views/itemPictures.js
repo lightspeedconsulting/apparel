@@ -24,12 +24,11 @@ function removeImages(view) {
     "metadata.customerId": Session.get('currentCustomer')},
     {sort: {updatedAt: -1}, limit: 1});
 
-    Images.remove(image._id);
-
+  console.log("Image Id: " + image._id);
   //TODO: ideally we would wait to batch submit the images, but
   //I couldn't think of a good way to store the event until a user
   //pressed a submit button
-  Meteor.call('removeImage', image.id, function(error, imageId) {
+  Meteor.call('removeImage', image._id, function(error, imageId) {
     if(error) {
       throwError(error.reason);
     }

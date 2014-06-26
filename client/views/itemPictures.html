@@ -1,9 +1,9 @@
 <template name="itemPictures">
-  <div class="text-center">
+  <div class="col-md-6 col-md-offset-3 text-center">
     <h3><small>Add a picture to this item</small></h3>
     {{#each images}}
     <div class="row">
-      <img src="{{url}}" alt="an Image" width="400" height="400">
+      <img src="{{url}}" alt="an Image" width="100%" height="100%">
     </div>
     {{/each}}
     <form role="form">
@@ -16,13 +16,9 @@
     <button type="button" class="btn btn-large btn-danger" id="removeItem">
       Remove Last Image
     </button>
-  </div>
-  <hr>
-  <div class="row text-center">
-    <div class="col-md-6 col-md-offset-3">
-      <button class="btn btn-large btn-block btn-success" id="doneItemPictures">
-        Done
-      </button>
-    </div>
+    <hr>
+    <button class="btn btn-large btn-success" id="doneItemPictures">
+      Done
+    </button>
   </div>
 </template>
