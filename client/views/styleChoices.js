@@ -60,6 +60,11 @@ Template.styleChoices.events = ({
     e.preventDefault();
     
     Session.set('displayAddStyleChoice', true);
+  },
+  'click .removeStyleChoice': function(e) {
+    e.preventDefault();
+
+    Images.remove(this._id);
   }
 });
 
