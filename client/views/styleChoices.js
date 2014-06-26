@@ -65,6 +65,18 @@ Template.styleChoices.events = ({
     e.preventDefault();
 
     Images.remove(this._id);
-  }
+  },
+  'click #removeStyleChoiceGrouping': function(e) {
+    e.preventDefault();
+
+    Meteor.call('removeStyleChoiceGrouping', Session.get('currentStyleChoice'),
+          function(error) {
+            if(error) {
+              throwError(error.reason, 'alert-danger');
+            } else {
+              throwError('Style Choice Successfully Removed', 'alert-success');
+            }
+     });
+   }
 });
 

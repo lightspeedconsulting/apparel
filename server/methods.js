@@ -1,4 +1,7 @@
 Meteor.methods({
+  removeStyleChoiceGrouping: function(styleChoiceGrouping) {
+    Images.remove({'metadata.grouping': styleChoiceGrouping});
+  },
   createNewCustomer: function(attributes) {
     return addCustomer(attributes.firstName, attributes.lastName, attributes.email);
   },
@@ -13,7 +16,7 @@ Meteor.methods({
 
     //Check if we have the right number of measurements, if not throw an error
     if(_.keys(combinedMeasurements).length !== 22) {
-      throw new Meteor.Error(400, 'Please fill in all the customer measurements')
+      throw new Meteor.Error(400, 'Please fill in all the customer measurements');
     }
 
     addMeasurementsToCustomer(customerId, combinedMeasurements);
