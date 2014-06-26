@@ -1,4 +1,5 @@
 <template name="addStyleChoices"> 
+  <div class="well">
   <br>
   <h3><small>Add New Style Choice</small></h3>
   <div class="row">
@@ -19,13 +20,6 @@
       <input type="text" class="form-control" placeholder="Style Name (e.g. French Cuff)" id="caption"> 
     </div>
     <br>
-    <div class="row">
-      <br>
-      <button type="button" class="btn btn-success" id="done">Done</button>
-    </div>
-  {{/if}}
-  {{#if styleInfoSubmitted}}
-    <br>
     <form role="form">
       <div class="form-group">
         <input  id="styleChoicePicture" class="center-block" type="file" accept="image/*" capture="camera"> 
@@ -33,4 +27,11 @@
     </form>
     <button type="button" class="btn btn-danger" id="removeImage">Remove</button>
   {{/if}}
+  {{#if styleInfoSubmitted}}
+    <div class="row">
+      <br>
+      <button type="button" class="btn btn-success" id="done">Done</button>
+    </div>
+  {{/if}}
+  </div>
 </template>

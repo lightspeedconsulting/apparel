@@ -84,7 +84,22 @@ Template.addStyleChoices.events({
     
     console.log(attributes);
     var files = e.target.files; 
+    var grouping = '';
+
+    if(Session.get('isOtherSelected')) {
+      grouping = $('#newStyleGrouping').val();
+    } else {
+      grouping = $('#styleChoiceGrouping').val();
+    }
+    attributes = {
+      clothingType: this.type,
+      caption: $('#caption').val(),
+      grouping: grouping
+      
+    };
+
     insertFiles(files, e, "StyleChoice");
+    Session.set('styleInfoSubmitted', true);
   }, 
   'click #removeImage': function(e) {
     e.preventDefault();
@@ -107,20 +122,6 @@ Template.addStyleChoices.events({
   'click #done': function(e) {
     e.preventDefault();
 
-    Session.set('styleInfoSubmitted', true);
-
-    var grouping = '';
-    if(Session.get('isOtherSelected')) {
-      grouping = $('#newStyleGrouping').val();
-    } else {
-      grouping = $('#styleChoiceGrouping').val();
-    }
-    attributes = {
-      clothingType: this.type,
-      caption: $('#caption').val(),
-      grouping: grouping
-      
-    };
-    Session.set('exposeImageInformation', false);
+    Session.set('displayAddStyleChoice',false);
   }
 });
