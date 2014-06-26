@@ -60,7 +60,7 @@ Meteor.methods({
     if(attributes.orderId && attributes.styleChoices && attributes.itemType) {
       return updateOrder(attributes.orderId,attributes.styleChoices, attributes.itemType);
     }
-    throw new Meteor.Error(400, 'Item Incomplete')
+    throw new Meteor.Error(400, 'Item Incomplete');
    },
    removeImage: function(imageId) {
     return removeSingleImage(imageId);
