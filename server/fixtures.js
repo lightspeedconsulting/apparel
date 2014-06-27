@@ -2,7 +2,6 @@ String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
-
 if (Meteor.isServer && process.env.ENV === 'dev') {
   Meteor.startup(function () {
     if(_.isUndefined(Customers.findOne())){

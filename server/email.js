@@ -1,197 +1,50 @@
-buildEmail = function(to, from, customerId, orderIdArr) {
-  customerMeasurements = getCustomerMeasurements(customerId);
-  var customerId = customerId;
+/*
+ Resolve will be a recursive function to generate html for the email
+taking a series of nested associative arrays.
+e.g.
+<body>
+  <p>
+    <b>
+      text1
+    </b>
+  </p>
+  <p>
+    text2
+  </p>
+  <img src=<src>>
+</body>
 
-  var htmlText = '';
-  htmlText = htmlText.concat(
-    openBody(),
-    customerImages(customerId),
-    openTable(),
-    measurementsTable(customerMeasurements),
-    closeTable(),
-    styleChoicesTable(orderIdArr, customerId),
-    closeBody()
-    );
+resolve([{body: [
+  {p: [{b: 'text1'}]},
+  {p: 'text2'}]
+}])
+*/
+resolve = function(baseArray) {
+  bodyText = ''
 
-  var safeHtmlText = '';
-  safeHtmlText = safeHtmlText.concat(
-    openBody(),
-    safeCustomerImages(customerId),
-    openTable(),
-    measurementsTable(customerMeasurements),
-    closeTable(),
-    safeStyleChoicesTable(orderIdArr, customerId),
-    closeBody()
-    );
-
-  var emailObject =
-  {
-    to: to,
-    from: from,
-    subject: 'Email Subject',
-    html: htmlText,
-    safeHtml: safeHtmlText
-  };
-  return Emails.insert(emailObject);
-};
-
-customerImages = function(customerId) {
-  var frontSrc = getCustomerImages(customerId,'Front')[0].url({auth: false})
-  var backSrc = getCustomerImages(customerId,'Back')[0].url({auth: false})
-  var sideSrc = getCustomerImages(customerId,'Side')[0].url({auth: false})
-  return imageTag(frontSrc)
-    + imageTag(backSrc)
-    + imageTag(sideSrc)
-}
-
-safeCustomerImages = function(customerId) {
-  var frontSrc = getCustomerImages(customerId,'Front')[0].url({auth: false})
-  var backSrc = getCustomerImages(customerId,'Back')[0].url({auth: false})
-  var sideSrc = getCustomerImages(customerId,'Side')[0].url({auth: false})
-  return safeImageTag(frontSrc)
-    + safeImageTag(backSrc)
-    + safeImageTag(sideSrc)
-}
-
-measurementsTable = function(customerMeasurements) {
-  return buildTable(customerMeasurements);
-};
-
-styleChoicesTable = function(orderIdArr, customerId) {
-  orderTable = '';
-  _.each(orderIdArr, function(value, key, list) {
-    styleChoiceHash = getStyleChoices(value);
-    orderTable =  orderTable + '<hr>' + openTable() +
-      orderHeader(value) +
-      buildStyleChoiceTable(styleChoiceHash) + closeTable() +
-      orderImages(value, customerId);
-  });
-  return orderTable;
-};
-
-safeStyleChoicesTable = function(orderIdArr, customerId) {
-  orderTable = '';
-  _.each(orderIdArr, function(value, key, list) {
-    styleChoiceHash = getStyleChoices(value);
-    orderTable =  orderTable + '<hr>' + openTable() +
-      orderHeader(value) +
-      safeBuildStyleChoiceTable(styleChoiceHash) + closeTable() +
-      safeOrderImages(value, customerId);
-  });
-  return orderTable;
-};
-
-buildStyleChoiceTable = function(tableHash) {
-  table = '';
-  _.each(tableHash, function(value, key, list) {
-    table = table +
-      fullTableRow(key, value, getStyleChoiceImage(value) );
-  });
-  return table;
-};
-
-safeBuildStyleChoiceTable = function(tableHash) {
-  table = '';
-  _.each(tableHash, function(value, key, list) {
-    table = table +
-      safeFullTableRow(key, value, getStyleChoiceImage(value) );
-  });
-  return table;
-};
-
-orderHeader = function(orderId){
-  itemType = getOrderItemType(orderId);
-  orderDate = getOrderDate(orderId);
-  return opentr().concat(
-     openth(),itemType,closeth(),
-     openth(),orderDate,closeth(),
-     closetr());
-};
-
-buildTable = function(tableHash) {
-  table = '';
-  _.each(tableHash, function(value, key, list) {
-    table = table + fullTableRow(key, value);
-  });
-  return table;
-};
-
-fullTableRow = function(key, value, image) {
-  var mtr = '';
-  mtr = mtr.concat(
-    opentr(),
-    opentd(),key,closetd(),
-    opentd(),value,closetd());
-  if(image) {
-    mtr = mtr.concat(
-      opentd(),styleChoiceImageTag(image),closetd()
-    );
+  //if the input is a string we are at the deepest level in the hash
+  if(_.isString(baseArray)) {
+    bodyText = bodyText + baseArray
   }
-  mtr = mtr.concat(
-    closetr()
-    );
-  return mtr;
-};
+  //IMG checking here
+  else {
+    _.each(baseArray, function(value, key, list) {
+      //Value is an array of objects 1 element long
+      tag = _.keys(value)[0] //<--- Tag for this object
+      content = _.values(value)[0] //<--- content for this object
 
-safeFullTableRow = function(key, value, image) {
-  var mtr = '';
-  mtr = mtr.concat(
-    opentr(),
-    opentd(),key,closetd(),
-    opentd(),value,closetd());
-  if(image) {
-    mtr = mtr.concat(
-      opentd(),safeStyleChoiceImageTag(image),closetd()
-    );
+      bodyText = bodyText + openTag(tag)
+      bodyText = bodyText + resolve(content)
+      bodyText = bodyText + closeTag(tag)
+    })
   }
-  mtr = mtr.concat(
-    closetr()
-    );
-  return mtr;
-};
-
-orderImages = function(itemId, customerId) {
-  images = getCustomerImages(customerId, itemId);
-  imageTags = '';
-
-  _.each(images, function(image) {
-    imageTags = imageTags + imageTag(image.url({auth: false}))
-  });
-
-  return imageTags;
+  return bodyText;
 }
 
-safeOrderImages = function(itemId, customerId) {
-  images = getCustomerImages(customerId, itemId);
-  imageTags = '';
-
-  _.each(images, function(image) {
-    imageTags = imageTags + safeImageTag(image.url({auth: false}))
-  });
-
-  return imageTags;
+var openTag = function (str) {
+  return "<" + str + ">";
 }
 
-getCustomerImages = function (customerId, view) {
-  return Images.find({"metadata.view": view,
-    "metadata.customerId": customerId},
-    {sort: {updatedAt: -1}}).fetch();
+var closeTag = function (str) {
+  return "</" + str + ">";
 }
-
-
-openBody = function() {return '<body>';};
-closeBody = function() {return '</body>';};
-openTable = function() {return '<table>';};
-closeTable = function() {return '</table>';};
-openth = function() {return '<th>';};
-closeth = function() {return '</th>';};
-opentr = function() {return '<tr>';};
-closetr = function() {return '</tr>';};
-opentd = function() {return '<td>';};
-closetd = function() {return '</td>';};
-
-styleChoiceImageTag = function(image) {return '<img src="' + process.env.ROOT_URL + 'styleChoices/' + image + '"><br>';};
-safeStyleChoiceImageTag = function(image) {return '<img src="' + 'styleChoices/' + image + '"><br>';};
-
-imageTag = function(image) {return '<img class="img-responsive" src="' + process.env.ROOT_URL + image + '"><br>';};
-safeImageTag = function(image) {return '<img class="img-responsive" src="' + image + '"><br>';};
