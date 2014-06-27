@@ -1,44 +1,52 @@
 <template name='styleChoices'>
-  <div class='col-md-2 col-xs-3'>
-    <div class='btn-group-vertical btn-block'>
-      {{#each styleChoiceGrouping}}
-      <button type='button' class='btn btn-default list-item' id={{this}}>{{this}}</button>
+  <div class="row">
+    <div class="col-md-2">
+      <div class='btn-group-vertical btn-block'>
+        {{#each styleChoiceGrouping}}
+        <button type='button' class='btn btn-default list-item' id={{this}}>{{this}}</button>
+        {{/each}}
+      </div>
+      <br><br><button type='button' class='btn btn-success' 
+        id=submitChoices>Submit Choices</button>
+      <button type="button" class="btn btn-danger" id="removeStyleChoiceGrouping">
+        Remove Style Category
+      </button>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+      {{#each styleChoice}}
+        <div class="col-md-3">
+          <img src="{{url}}" alt="an Image" id={{metadata.caption}} 
+            class="img-responsive thumbnail">
+        <div class='text-center'>
+          <small>{{metadata.caption}}</small>
+          <br>
+          <button type="button" class="btn btn-sm btn-danger removeStyleChoice">
+              Remove
+          </button>
+        </div>
+      </div>
       {{/each}}
     </div>
-    <br><br><button type='button' class='btn btn-success btn-block' id=submitChoices>Submit Choices</button>
-  </div>
-  <div class='col-xs-9 col-md-8'>
-    {{#each styleChoice}}
-      <div class="col-md-3">
-        <img src="{{url}}" alt="an Image" id={{metadata.caption}} class="img-responsive thumbnail">
-      <div class='text-center'>
-        <small>{{metadata.caption}}</small>
-        <br>
-        <button type="button" class="btn btn-sm btn-danger removeStyleChoice">
-            Remove
-        </button>
+    <div class='col-md-2 text-center'>
+      <big>Current Choices</big>
+      {{#each selectedChoice}}
+      <div class='row'>
+        Test{{this}}
       </div>
+      {{/each}}
     </div>
-    {{/each}}
   </div>
-  <div class='col-xs-4 col-md-2 text-center'>
-    <big>Current Choices</big>
-    {{#each selectedChoice}}
-    <div class='row'>
-      Test{{this}}
+  <div class="row">
+    <div class='col-md-4 col-md-offset-4 text-center'>
+    <hr>
+      <button type="button" class="btn btn-default" id="addStyleChoice">
+        Add Style Choice
+      </button>
+      <!--TODO: Put cancel button here with if statement -->
+      <br>
+    {{#if displayAddStyleChoice}}
+      {{> addStyleChoices}}
+    {{/if}}
     </div>
-    {{/each}}
-  </div>
-  <div class='col-md-4 col-md-offset-4'>
-  <hr>
-    <button type="button" class="btn btn-default" id="addStyleChoice">
-      Add Style Choice
-    </button>
-    <button type="button" class="btn btn-danger" id="removeStyleChoiceGrouping">
-      Remove Selected Style Choice Grouping
-    </button>
-  {{#if displayAddStyleChoice}}
-    {{> addStyleChoices}}
-  {{/if}}
   </div>
 </template>

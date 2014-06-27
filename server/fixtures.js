@@ -2,21 +2,6 @@ String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
-      Customers.remove({});
-      addCustomer('Josh', 'A');
-      addCustomer('Tim', 'B');
-      addCustomer('John', 'Doe');
-      jb = addCustomer('James', 'Bond');
-      addCustomer('Sean', 'Connery');
-      addCustomer('Woody', 'Allen');
-      addCustomer('Brad', 'Pitt');
-      addCustomer('Jonnie', 'Depp');
-      addCustomer('Greg', 'Silverberg');
-      addCustomer('Clark', 'Kent');
-      addCustomer('Bruce', 'Wayne');
-      addCustomer('Bruce', 'Willis');
-      addCustomer('Lil', 'Wayne');
-
 
 if (Meteor.isServer && process.env.ENV === 'dev') {
   Meteor.startup(function () {
