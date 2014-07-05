@@ -53,28 +53,20 @@ Template.orders.events({
     $("#" + current).removeClass('success').addClass('default');
   },
   'click .expand': function(e) {
-    e.preventDefault();
-
-    orderIds = Session.get('expandedOrderIds');
-    orderId = this._id;
-    //Using an object here to mimic a set, don't want
-    //multiple clicks to add duplicate orderIds. 
-    if(orderId in orderIds) {
-      delete orderIds[orderId];
-    } else { 
-      orderIds[orderId] = true;
-    }
-    Session.set('expandedOrderIds', orderIds);
+    Session.set('orderModalContext', this);
   }
 
 });
 Template.orders.activeOrder = function() {
   var ret = Session.get('currentCustomer') ? Orders.find({customerId: Session.get('currentCustomer')}) : Orders.find();
 
-  return ret
+  return ret;
 };
 
 Template.orders.helpers({
+  modalOrderContext: function() {
+    return Session.get('orderModalContext');
+  },
   isOrdered: function(orderId) {
     orderIds = Session.get('expandedOrderIds');
     if(!_.isUndefined(orderIds) && orderId in orderIds) {
