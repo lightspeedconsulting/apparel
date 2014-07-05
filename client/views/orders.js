@@ -29,11 +29,11 @@ Template.orders.events({
           if(error) {
             throwError(error.reason, "alert-danger");
             Router.go('order');
+          } else {
+            Session.set('emailId', emailId);
+            Router.go('review');
+            throwError("Review this order", "alert-success");
           }
-          Session.set('emailId', emailId);
-          Router.go('review');
-          throwError("Review this order", "alert-success");
-
       });
     } else {
       throwError("Please select an order and fill in an email address!", 
